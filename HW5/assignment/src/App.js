@@ -1,23 +1,134 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {/* template */}
+      <div class=" flex flex-col items-center h-max bg-gradient-to-br from-indigo-500 to-indigo-800 ">
+        {/* border screen */}
+        {/* card */}
+        <div class="flex flex-col bg-white font-semibold text-center rounded-3xl border shadow-lg p-10 max-w-3xl my-5">
+          <img
+            class="mb-3 w-32 h-32 rounded-full shadow-lg mx-auto"
+            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+            alt="product designer"
+          ></img>
+          <h1 class="text-lg text-gray-700"> John Doe </h1>
+          <h3 class="text-sm text-gray-400 "> Creative Director </h3>
+          <p class="text-xs text-gray-400 mt-4 max-w-3xl">
+            {" "}
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.{" "}
+          </p>
+          <div>
+          <button class="bg-indigo-600 px-8 py-2 mt-8 rounded-3xl text-gray-100 font-semibold uppercase tracking-wide mr-2">
+            Vote
+          </button>
+          <button class="bg-indigo-600 px-8 py-2 mt-8 rounded-3xl text-gray-100 font-semibold uppercase tracking-wide ml-2">
+            Unvote
+          </button>
+          </div>
+        </div>
+        {/* end card */}
+        {/* card */}
+        <div class="flex flex-col bg-white font-semibold text-center rounded-3xl border shadow-lg p-10 max-w-3xl my-5">
+          <img
+            class="mb-3 w-32 h-32 rounded-full shadow-lg mx-auto"
+            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+            alt="product designer"
+          ></img>
+          <h1 class="text-lg text-gray-700"> John Doe </h1>
+          <h3 class="text-sm text-gray-400 "> Creative Director </h3>
+          <p class="text-xs text-gray-400 mt-4 max-w-3xl">
+            {" "}
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.{" "}
+          </p>
+          <div>
+          <button class="bg-indigo-600 px-8 py-2 mt-8 rounded-3xl text-gray-100 font-semibold uppercase tracking-wide mr-2">
+            Vote
+          </button>
+          <button class="bg-indigo-600 px-8 py-2 mt-8 rounded-3xl text-gray-100 font-semibold uppercase tracking-wide ml-2">
+            Unvote
+          </button>
+          </div>
+        </div>
+        {/* end card */}
+        {/* card */}
+        <div class="flex flex-col bg-white font-semibold text-center rounded-3xl border shadow-lg p-10 max-w-3xl my-5">
+          <img
+            class="mb-3 w-32 h-32 rounded-full shadow-lg mx-auto"
+            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+            alt="product designer"
+          ></img>
+          <h1 class="text-lg text-gray-700"> John Doe </h1>
+          <h3 class="text-sm text-gray-400 "> Creative Director </h3>
+          <p class="text-xs text-gray-400 mt-4 max-w-3xl">
+            {" "}
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.{" "}
+          </p>
+          <div>
+          <button class="bg-indigo-600 px-8 py-2 mt-8 rounded-3xl text-gray-100 font-semibold uppercase tracking-wide mr-2">
+            Vote
+          </button>
+          <button class="bg-indigo-600 px-8 py-2 mt-8 rounded-3xl text-gray-100 font-semibold uppercase tracking-wide ml-2">
+            Unvote
+          </button>
+          </div>
+        </div>
+        {/* end card */}
+        {/* card */}
+        <div class="flex flex-col bg-white font-semibold text-center rounded-3xl border shadow-lg p-10 max-w-3xl my-5">
+          <img
+            class="mb-3 w-32 h-32 rounded-full shadow-lg mx-auto"
+            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+            alt="product designer"
+          ></img>
+          <h1 class="text-lg text-gray-700"> John Doe </h1>
+          <h3 class="text-sm text-gray-400 "> Creative Director </h3>
+          <p class="text-xs text-gray-400 mt-4 max-w-3xl">
+            {" "}
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.{" "}
+          </p>
+          <div>
+          <button class="bg-indigo-600 px-8 py-2 mt-8 rounded-3xl text-gray-100 font-semibold uppercase tracking-wide mr-2">
+            Vote
+          </button>
+          <button class="bg-indigo-600 px-8 py-2 mt-8 rounded-3xl text-gray-100 font-semibold uppercase tracking-wide ml-2">
+            Unvote
+          </button>
+          </div>
+        </div>
+        {/* end card */}
+        {/* card */}
+        <div class="flex flex-col bg-white font-semibold text-center rounded-3xl border shadow-lg p-10 max-w-3xl my-5">
+          <img
+            class="mb-3 w-32 h-32 rounded-full shadow-lg mx-auto"
+            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+            alt="product designer"
+          ></img>
+          <h1 class="text-lg text-gray-700"> John Doe </h1>
+          <h3 class="text-sm text-gray-400 "> Creative Director </h3>
+          <p class="text-xs text-gray-400 mt-4 max-w-3xl">
+            {" "}
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.{" "}
+          </p>
+          <div>
+          <button class="bg-indigo-600 px-8 py-2 mt-8 rounded-3xl text-gray-100 font-semibold uppercase tracking-wide mr-2">
+            Vote
+          </button>
+          <button class="bg-indigo-600 px-8 py-2 mt-8 rounded-3xl text-gray-100 font-semibold uppercase tracking-wide ml-2">
+            Unvote
+          </button>
+          </div>
+        </div>
+        {/* end card */}
+        {/* end border screen */}
+      </div>
+      {/* end template */}
     </div>
   );
 }
