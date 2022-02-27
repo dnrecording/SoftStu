@@ -33,11 +33,10 @@ function App() {
 
   return (
     <div>
-      {/* template */}
-      <div class=" flex flex-col items-center h-max bg-gradient-to-br from-indigo-500 to-indigo-800 ">
+      <div class=" flex flex-col items-center h-max bg-gradient-to-br from-coral-100 to-coral-400">
         {/* border screen */}
         {/* Personal card */}
-        <div class="flex flex-col bg-white font-semibold text-center rounded-3xl border shadow-lg p-7 max-w-3xl my-5">
+        <div class="flex flex-col bg-white font-semibold text-center rounded-3xl shadow-lg p-7 max-w-3xl my-5">
           <img
             class="mb-3 w-48 h-48 rounded-full shadow-lg mx-auto"
             src="https://sv1.picz.in.th/images/2022/01/29/nXUVB0.jpg"
@@ -75,7 +74,7 @@ function App() {
         {/* end Personal card */}
 
         {/* Personal card */}
-        <div class="flex flex-col bg-white font-semibold text-center rounded-3xl border shadow-lg p-7 max-w-3xl my-5">
+        <div class="flex flex-col bg-white font-semibold text-center rounded-3xl shadow-lg p-7 max-w-3xl my-5">
           <img
             class="mb-3 w-48 h-48 rounded-full shadow-lg mx-auto"
             src="https://sv1.picz.in.th/images/2022/01/29/nXUVB0.jpg"
@@ -113,7 +112,7 @@ function App() {
         {/* end Personal card */}
 
         {/* Personal card */}
-        <div class="flex flex-col bg-white font-semibold text-center rounded-3xl border shadow-lg p-7 max-w-3xl my-5">
+        <div class="flex flex-col bg-white font-semibold text-center rounded-3xl shadow-lg p-7 max-w-3xl my-5">
           <img
             class="mb-3 w-48 h-48 rounded-full shadow-lg mx-auto"
             src="https://sv1.picz.in.th/images/2022/01/29/nXUVB0.jpg"
@@ -151,7 +150,7 @@ function App() {
         {/* end Personal card */}
 
         {/* Personal card */}
-        <div class="flex flex-col bg-white font-semibold text-center rounded-3xl border shadow-lg p-7 max-w-3xl my-5">
+        <div class="flex flex-col bg-white font-semibold text-center rounded-3xl shadow-lg p-7 max-w-3xl my-5">
           <img
             class="mb-3 w-48 h-48 rounded-full shadow-lg mx-auto"
             src="https://sv1.picz.in.th/images/2022/01/29/nXUVB0.jpg"
@@ -189,7 +188,7 @@ function App() {
         {/* end Personal card */}
 
         {/* Personal card */}
-        <div class="flex flex-col bg-white font-semibold text-center rounded-3xl border shadow-lg p-7 max-w-3xl my-5">
+        <div class="flex flex-col bg-white font-semibold text-center rounded-3xl shadow-lg p-7 max-w-3xl my-5">
           <img
             class="mb-3 w-48 h-48 rounded-full shadow-lg mx-auto"
             src="https://sv1.picz.in.th/images/2022/01/29/nXUVB0.jpg"
