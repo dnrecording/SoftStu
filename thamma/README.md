@@ -1,4 +1,5 @@
-File Structure
+## File Structure
+
 Here's a very high level view of some of the files involved
 
 my-app
@@ -15,3 +16,15 @@ my-app
 - ├── Program.cs        # dotnet entry point
 - ├── Startup.cs        # dotnet app configuration
 - └── my-app.csproj     # project config and build steps
+
+## Get MongoDB
+
+- https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-windows/
+
+## Get mongosh
+
+- https://www.mongodb.com/docs/mongodb-shell/install/
+
+## Instruction to use MongoDB with Web API
+
+- https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mongo-app?view=aspnetcore-6.0&tabs=visual-studio-code
