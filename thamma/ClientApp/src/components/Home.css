@@ -1,0 +1,25 @@
+.app-header{
+    border-bottom: 1px solid gray;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .app-grid{
+    display: grid;
+    column-gap: 16px;
+    row-gap: 16px;
+    max-width: 800px;
+    margin-top: 40px;
+    margin-left: 40px;
+    margin-right: auto;
+  }
+  
+  .contentCard {
+    width: 800px;
+  }
+  
+  .contentImage {
+    width: 200px;
+  }
