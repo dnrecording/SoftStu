@@ -1,24 +1,27 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
+import axios from "axios";
 import "./Profile.css";
 
-function Profile() { 
+function Profile() {
+  const [data, setData] = useState({});
+  const userID = "62526df6d30be6196cd5f864";
+  const url = `https://localhost:7247/api/user/${userID}`;
 
-	const [data, setData] = useState(null);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // alert(`The name you entered was: ${name}`);
+  };
 
-	useEffect(() => {
-		axios.get(`https://localhost:7247/api/user/62526df6d30be6196cd5f864`, {
-      // headers: { 
-      //   'Access-Control-Allow-Origin' : '*',
-      // },
-    }) // user.id
-		.then((response) => {
-		  // setData(response.data);
-      console.log(response.data);
-		});
-	  }, []);
+  useEffect(() => {
+    (async () => {
+      const users = await axios.get(url);
+      setData(Object.values(users.data));
+      // [0]: id, [1]: username, [2]: password, [3]: email, [4]: fname, [5]: lname, [6]: img
+    })();
+  }, []);
 
-    return (
+  return (
+    <form onSubmit={handleSubmit}>
       <div class="container">
         <div class="row gutters">
           <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
@@ -28,19 +31,41 @@ function Profile() {
                   <div class="user-profile">
                     <div class="user-avatar">
                       <img
-                        src="https://bootdey.com/img/Content/avatar/avatar7.png"
-                        alt="Maxwell Admin"
+                        src={data[6]}
+                        //{data[6]}
+                        alt="src img"
                       ></img>
                     </div>
-                    <h5 class="user-name">{data}</h5>
-                    <h6 class="user-email">yuki@Maxwell.com</h6>
+                    <h5 class="user-name" alt="name">
+                      {data[4] + " " + data[5]}
+                    </h5>
+                    {/* {data[4] + " " + data[5]} */}
+                    <h6 class="user-email" alt="email">
+                      {data[3]}
+                    </h6>
+                    {/* {data[3]} */}
                   </div>
-                  <div class="about">
-                    <h5>About</h5>
-                    <p>
-                      I'm Yuki. Full Stack Designer I enjoy creating
-                      user-centric, delightful and human experiences.
-                    </p>
+                  <div class="row gy-5">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                      <div class="d-flex flex-column text-center">
+                        <button
+                          type="button"
+                          id="submit"
+                          name="submit"
+                          class="mx-5 mb-1 btn btn-secondary"
+                        >
+                          Edit
+                        </button>
+                        <button
+                          type="button"
+                          id="submit"
+                          name="submit"
+                          class="mx-5 mt-1 btn btn-danger"
+                        >
+                          Ban
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -55,14 +80,30 @@ function Profile() {
                   </div>
                   <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="form-group">
-                      <label for="fullName">Full Name</label>
+                      <label for="fName">First Name</label>
                       <input
-                        type="text"
+                        type="name"
                         class="form-control"
-                        id="fullName"
-                        placeholder="Enter full name"
+                        id="fName"
+                        placeholder={data[4]}
                       ></input>
                     </div>
+                  </div>
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                      <label for="lName">Last Name</label>
+                      <input
+                        type="name"
+                        class="form-control"
+                        id="lName"
+                        placeholder={data[5]}
+                      ></input>
+                    </div>
+                  </div>
+                </div>
+                <div class="row gutters">
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <h6 class="mt-3 mb-2 text-primary">Email</h6>
                   </div>
                   <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="form-group">
@@ -71,59 +112,11 @@ function Profile() {
                         type="email"
                         class="form-control"
                         id="eMail"
-                        placeholder="Enter email ID"
+                        placeholder={data[3]}
                       ></input>
                     </div>
                   </div>
-                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="form-group">
-                      <label for="phone">Phone</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="phone"
-                        placeholder="Enter phone number"
-                      ></input>
-                    </div>
-                  </div>
-                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="form-group">
-                      <label for="website">Website URL</label>
-                      <input
-                        type="url"
-                        class="form-control"
-                        id="website"
-                        placeholder="Website url"
-                      ></input>
-                    </div>
-                  </div>
-                </div>
-                <div class="row gutters">
-                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h6 class="mt-3 mb-2 text-primary">Address</h6>
-                  </div>
-                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="form-group">
-                      <label for="Street">Street</label>
-                      <input
-                        type="name"
-                        class="form-control"
-                        id="Street"
-                        placeholder="Enter Street"
-                      ></input>
-                    </div>
-                  </div>
-                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="form-group">
-                      <label for="ciTy">City</label>
-                      <input
-                        type="name"
-                        class="form-control"
-                        id="ciTy"
-                        placeholder="Enter City"
-                      ></input>
-                    </div>
-                  </div>
+
                   <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="form-group">
                       <label for="sTate">State</label>
@@ -135,46 +128,14 @@ function Profile() {
                       ></input>
                     </div>
                   </div>
-                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="form-group">
-                      <label for="zIp">Zip Code</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="zIp"
-                        placeholder="Zip Code"
-                      ></input>
-                    </div>
-                  </div>
-                </div>
-                <div class="row gutters">
-                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div class="text-right">
-                      <button
-                        type="button"
-                        id="submit"
-                        name="submit"
-                        class="btn btn-secondary"
-                      >
-                        Cancel
-                      </button>
-                      <button
-                        type="button"
-                        id="submit"
-                        name="submit"
-                        class="btn btn-primary"
-                      >
-                        Update
-                      </button>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    );
-  };
+    </form>
+  );
+}
 
 export default Profile;
