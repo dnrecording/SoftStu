@@ -1,11 +1,22 @@
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
-using Microsoft.EntityFrameworkCore;
 using thamma.Models;
 using ThammaApi.Services;
 
+var MyAllowSpecificOrigins = "_MyAllowSubdomainPolicy";
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+        policy =>
+        {
+            policy.WithOrigins("https://localhost:44452")
+            .SetIsOriginAllowed(origin => true)
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();
+        });
+});
 
 // Add services to the container.
 builder.Services.Configure<ThammaDatabaseSettings>(
@@ -14,16 +25,11 @@ builder.Services.Configure<ThammaDatabaseSettings>(
 builder.Services.AddSingleton<UserService>();
 
 builder.Services.AddControllersWithViews();
-builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseMigrationsEndPoint();
-}
-else
+if (!app.Environment.IsDevelopment())
 {
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
@@ -33,13 +39,12 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 
-app.UseAuthentication();
-app.UseAuthorization();
+app.UseCors(MyAllowSpecificOrigins);
+
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller}/{action=Index}/{id?}");
-app.MapRazorPages();
 
 app.MapFallbackToFile("index.html");;
 
