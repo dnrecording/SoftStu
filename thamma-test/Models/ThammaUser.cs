@@ -26,4 +26,7 @@ public class User
     
     [BsonElement("img")]
     public string img {get; set;} = null!;
+
+    [BsonElement("status")]
+    public string status {get; set;} = null!;
 }

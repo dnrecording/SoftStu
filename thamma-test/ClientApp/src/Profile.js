@@ -1,27 +1,56 @@
 import React, { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { Modal, Button } from 'react-bootstrap';
 import axios from "axios";
 import "./Profile.css";
 
 function Profile() {
   const [data, setData] = useState({});
-  const userID = "62526df6d30be6196cd5f864";
+  const adminID = "62526df6d30be6196cd5f864"; // Admin ID
+  // const userID = "62526df6d30be6196cd5f864"; // testing
+  const userID = "625846c4c0530a12a1b21e1d";
   const url = `https://localhost:7247/api/user/${userID}`;
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // alert(`The name you entered was: ${name}`);
-  };
+  const [show, setShow] = useState(false);
 
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  async function fetchEdit(edit_data) {
+    let update_data = { ...edit_data, username: data[1], password: data[2], status: data[7] };
+    const usersEdit = await axios.put(url, update_data);
+    setData(Object.values(usersEdit.data));
+    window.location.reload(false); // refresh window
+  }
+
+  const onSubmit = (edit_data) => {
+    fetchEdit(edit_data)
+  };
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  const deleteAcc = () => {
+    // logout first then delete account
+    (async () => {
+      await axios.delete(url);
+    })();
+  }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
     (async () => {
       const users = await axios.get(url);
       setData(Object.values(users.data));
-      // [0]: id, [1]: username, [2]: password, [3]: email, [4]: fname, [5]: lname, [6]: img
+      // [0]: id, [1]: username, [2]: password, [3]: email, [4]: fname, [5]: lname, [6]: img, [7]: status
     })();
   }, []);
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div class="container">
         <div class="row gutters">
           <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
@@ -32,38 +61,36 @@ function Profile() {
                     <div class="user-avatar">
                       <img
                         src={data[6]}
-                        //{data[6]}
-                        alt="src img"
+                        alt="profile_img"
                       ></img>
                     </div>
                     <h5 class="user-name" alt="name">
                       {data[4] + " " + data[5]}
                     </h5>
-                    {/* {data[4] + " " + data[5]} */}
                     <h6 class="user-email" alt="email">
                       {data[3]}
                     </h6>
-                    {/* {data[3]} */}
                   </div>
                   <div class="row gy-5">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                       <div class="d-flex flex-column text-center">
                         <button
-                          type="button"
+                          type="submit"
                           id="submit"
                           name="submit"
                           class="mx-5 mb-1 btn btn-secondary"
                         >
-                          Edit
+                          Save
                         </button>
-                        <button
+                        {adminID==data[0]&&<button
                           type="button"
-                          id="submit"
-                          name="submit"
+                          id="ban"
+                          name="ban"
                           class="mx-5 mt-1 btn btn-danger"
+                          // onClick={}
                         >
                           Ban
-                        </button>
+                        </button>}
                       </div>
                     </div>
                   </div>
@@ -76,57 +103,93 @@ function Profile() {
               <div class="card-body">
                 <div class="row gutters">
                   <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h6 class="mb-2 text-primary">Personal Details</h6>
+                    <h5 class="mb-2 text-primary">Personal Details</h5>
+                    <br></br>
                   </div>
                   <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="form-group">
-                      <label for="fName">First Name</label>
+                      <label for="fName">First Name *</label>
                       <input
                         type="name"
                         class="form-control"
                         id="fName"
                         placeholder={data[4]}
+                        {...register("fname", {
+                          required: true,
+                          maxLength: {
+                            value: 20,
+                            message: "this need to be max length of 20",
+                          },
+                          minLength: {
+                            value: 4,
+                            message: "this need to be min length of 4",
+                          },
+                        })}
                       ></input>
+                      <p class="text-danger">{errors.fname?.message}</p>
                     </div>
                   </div>
                   <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="form-group">
-                      <label for="lName">Last Name</label>
+                      <label for="lName">Last Name *</label>
                       <input
                         type="name"
                         class="form-control"
                         id="lName"
                         placeholder={data[5]}
+                        {...register("lname", {
+                          required: true,
+                          maxLength: {
+                            value: 20,
+                            message: "this need to be max length of 20",
+                          },
+                          minLength: {
+                            value: 4,
+                            message: "this need to be min length of 4",
+                          },
+                        })}
                       ></input>
+                      <p class="text-danger">{errors.lname?.message}</p>
                     </div>
                   </div>
                 </div>
                 <div class="row gutters">
                   <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h6 class="mt-3 mb-2 text-primary">Email</h6>
+                    <br></br>
                   </div>
                   <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="form-group">
-                      <label for="eMail">Email</label>
+                      <label for="eMail">Email *</label>
                       <input
                         type="email"
                         class="form-control"
                         id="eMail"
                         placeholder={data[3]}
+                        {...register("email", {
+                          required: true,
+                          pattern:
+                            /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                        })}
+                      ></input>
+                      <p class="text-danger">{errors.email?.message}</p>
+                    </div>
+                  </div>
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                      <label for="img">Image *</label>
+                      <input
+                        type="url"
+                        class="form-control"
+                        id="img"
+                        placeholder={data[6]}
+                        {...register("img")}
                       ></input>
                     </div>
                   </div>
-
-                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="form-group">
-                      <label for="sTate">State</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="sTate"
-                        placeholder="Enter State"
-                      ></input>
-                    </div>
+                  <div class="text-end">
+                    <br></br>
+                  <a class="text-danger" onClick={handleShow}>Delete account</a>
+                  {/* Logout */}
                   </div>
                 </div>
               </div>
@@ -134,7 +197,22 @@ function Profile() {
           </div>
         </div>
       </div>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm to delete account</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure to delete this account?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="danger" onClick={deleteAcc} href="#">
+            Confirm Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </form>
+    
   );
 }
 
