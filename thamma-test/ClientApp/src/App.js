@@ -1,23 +1,21 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router';
+import { Route, Switch } from 'react-router';
 import { Layout } from './components/Layout';
-import { Home } from './components/Home';
-import { FetchData } from './components/FetchData';
-import { Counter } from './components/Counter';
 import Profile from './Profile';
+import OtherProfile from './OtherProfile';
+import Landing_page from './Landing_page';
 
 import './custom.css'
 
 export default class App extends Component {
   static displayName = App.name;
-
+  
   render () {
     return (
       <Layout>
-        <Route exact path='/' component={Home} />
-        <Route path='/counter' component={Counter} />
-        <Route path='/fetch-data' component={FetchData} />
-        <Route path='/profile'><Profile /></Route>
+        <Route exact path="/"> <Landing_page /> </Route>
+        <Route exact path="/profile"><Profile /></Route>
+        <Route path="/profile/:id"><OtherProfile /></Route>
       </Layout>
     );
   }

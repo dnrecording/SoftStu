@@ -82,15 +82,6 @@ function Profile() {
                         >
                           Save
                         </button>
-                        {adminID==data[0]&&<button
-                          type="button"
-                          id="ban"
-                          name="ban"
-                          class="mx-5 mt-1 btn btn-danger"
-                          // onClick={}
-                        >
-                          Ban
-                        </button>}
                       </div>
                     </div>
                   </div>
