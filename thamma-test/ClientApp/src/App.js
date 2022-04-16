@@ -1,22 +1,25 @@
-import React, { Component } from 'react';
-import { Route, Switch } from 'react-router';
-import { Layout } from './components/Layout';
-import Profile from './Profile';
-import OtherProfile from './OtherProfile';
-import Landing_page from './Landing_page';
+import React, { Component } from "react";
+import { Route, Routes } from "react-router";
+import { BrowserRouter as Router } from "react-router-dom";
+// import { Layout } from './components/Layout';
+import Profile from "./Profile";
+import OtherProfile from "./OtherProfile";
+import Landing_page from "./Landing_page";
 
-import './custom.css'
+import "./custom.css";
 
 export default class App extends Component {
   static displayName = App.name;
-  
-  render () {
+
+  render() {
     return (
-      <Layout>
-        <Route exact path="/"> <Landing_page /> </Route>
-        <Route exact path="/profile"><Profile /></Route>
-        <Route path="/profile/:id"><OtherProfile /></Route>
-      </Layout>
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<Landing_page />}></Route>
+          <Route exact path="/profile" element={<Profile />}></Route>
+          <Route path="/profile/:id" element={<OtherProfile />}></Route>
+        </Routes>
+      </Router>
     );
   }
 }

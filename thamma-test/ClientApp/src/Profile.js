@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Modal, Button } from 'react-bootstrap';
+import { useNavigate } from "react-router";
 import axios from "axios";
 import "./Profile.css";
+import { Layout } from "./components/Layout";
 
 function Profile() {
+  const navigate = useNavigate();
   const [data, setData] = useState({});
   const adminID = "62526df6d30be6196cd5f864"; // Admin ID
   // const userID = "62526df6d30be6196cd5f864"; // testing
-  const userID = "625846c4c0530a12a1b21e1d";
+  const userID = "625a9e738f59ed05920b6444"; // use credential to see your own profile && status : true
   const url = `https://localhost:7247/api/user/${userID}`;
 
   const [show, setShow] = useState(false);
@@ -37,6 +40,7 @@ function Profile() {
   const deleteAcc = () => {
     // logout first then delete account
     (async () => {
+      navigate("/", { replace: true });
       await axios.delete(url);
     })();
   }
@@ -50,6 +54,7 @@ function Profile() {
   }, []);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   return (
+    <Layout>
     <form onSubmit={handleSubmit(onSubmit)}>
       <div class="container">
         <div class="row gutters">
@@ -179,8 +184,7 @@ function Profile() {
                   </div>
                   <div class="text-end">
                     <br></br>
-                  <a class="text-danger" onClick={handleShow}>Delete account</a>
-                  {/* Logout */}
+                  {data[0]!=adminID&&<a class="text-danger" onClick={handleShow}>Delete account</a>}
                   </div>
                 </div>
               </div>
@@ -197,13 +201,21 @@ function Profile() {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="danger" onClick={deleteAcc} href="#">
+          <Button variant="danger" onClick={deleteAcc}>
             Confirm Delete
           </Button>
         </Modal.Footer>
       </Modal>
     </form>
-    
+{/* testing */}
+<br></br>
+<div class="text-center">
+<Button class="btn btn-primary mx-2" onClick={() => {navigate("/profile/62526df6d30be6196cd5f864")}}>admin</Button>
+<Button class="btn btn-primary mx-2" onClick={() => {navigate("/profile/62527dd6d30be6196cd5f865")}}>user1</Button>
+<Button class="btn btn-primary mx-2" onClick={() => {navigate("/profile/62527e2cd30be6196cd5f866")}}>user2</Button>
+<Button class="btn btn-primary mx-2" onClick={() => {navigate("/profile/625a9e738f59ed05920b6444")}}>user3</Button>
+</div>
+    </Layout>
   );
 }
 

@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
 import "./Profile.css";
+import { Layout } from "./components/Layout";
 
 function OtherProfile() {
-  const { id } = useParams(); // read url param user id
+  const { id } = useParams(); // read url param user id from other user item
   const [data, setData] = useState({});
   const adminID = "62526df6d30be6196cd5f864"; // Admin ID
   // const userID = "625846c4c0530a12a1b21e1d"; // testing
@@ -60,6 +61,7 @@ function OtherProfile() {
   }, []);
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   return (
+    <Layout>
     <form>
       <div class="container">
         <div class="row gutters">
@@ -176,6 +178,7 @@ function OtherProfile() {
         </div>
       </div>
     </form>
+    </Layout>
   );
 }
 
