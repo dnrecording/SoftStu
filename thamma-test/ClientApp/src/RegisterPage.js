@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 
-function Landing_page() {
+function RegisterPage() {
 
   const{
     register,
@@ -115,10 +115,10 @@ function Landing_page() {
         Register
       </button>
       <p className="forgot-password text-right">
-        Already registered <a href="#">log in?</a>
+        Already registered <a href="login">log in?</a>
       </p>
     </form>
   );
 }
 
-export default Landing_page;
+export default RegisterPage;

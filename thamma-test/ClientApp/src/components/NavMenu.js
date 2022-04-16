@@ -30,18 +30,18 @@ export class NavMenu extends Component {
       <header>
         <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
           <Container>
-            <NavbarBrand>THAMMA</NavbarBrand> 
+            <NavbarBrand tag={Link}to="/">THAMMA</NavbarBrand> 
             <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
             <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
               <ul className="navbar-nav flex-grow">
                 <NavItem>
+                  <NavLink tag={Link} className="text-dark" to={`/createpost`}>CreatePost</NavLink>
+                </NavItem>
+                <NavItem>
                   <NavLink tag={Link} className="text-dark" to="/profile">Profile</NavLink>
                 </NavItem>
-                {/* <NavItem>
-                  <NavLink tag={Link} className="text-dark" to={`/profile/${id}`}>OtherProfile</NavLink>
-                </NavItem> */}
                 <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/">Logout</NavLink>
+                <NavLink tag={Link} className="text-dark" to="/login">Logout</NavLink>
                 </NavItem>
               </ul>
             </Collapse>
