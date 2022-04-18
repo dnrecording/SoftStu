@@ -12,7 +12,7 @@ function Profile() {
   const adminID = "62526df6d30be6196cd5f864"; // Admin ID
   // const userID = "62526df6d30be6196cd5f864"; // testing
   const userID = "625a9e738f59ed05920b6444"; // use credential to see your own profile && status : true
-  const url = `https://localhost:7247/api/user/${userID}`;
+  const url = `https://localhost:7290/api/user/${userID}`;
 
   const [show, setShow] = useState(false);
 

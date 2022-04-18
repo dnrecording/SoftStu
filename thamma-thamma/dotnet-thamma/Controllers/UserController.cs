@@ -94,4 +94,13 @@ public class UserController : ControllerBase
 
         return NotFound();
     }
+
+    [Route("api/test")]
+    [HttpPost]
+    public async Task<IActionResult> Posttest(User newUser)
+    {
+        await _userService.CreateAsync(newUser);
+
+        return CreatedAtAction(nameof(Get), new { id = newUser.Id }, newUser);
+    }
 }

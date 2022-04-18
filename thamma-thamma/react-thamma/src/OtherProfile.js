@@ -10,7 +10,7 @@ function OtherProfile() {
   const adminID = "62526df6d30be6196cd5f864"; // Admin ID
   // const userID = "625846c4c0530a12a1b21e1d"; // testing
   const userID = id;
-  const url = `https://localhost:7247/api/user/${userID}`;
+  const url = `https://localhost:7290/api/user/${userID}`;
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   async function fetchBan() {
