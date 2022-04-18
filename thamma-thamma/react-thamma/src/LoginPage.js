@@ -17,10 +17,11 @@ function LoginPage() {
     const userSignin = await axios.get(url, {
       params: { username: authenData.username, password: authenData.password },
     });
-    if (userSignin.status == 200){
+    if (userSignin.status === 200){
         navigate("/")
+        localStorage.setItem("id", userSignin.data.id);
+        // set credential
     }
-    // console.log(userSignin); // credential
   }
 
   const onSubmit = (authen_data) => {

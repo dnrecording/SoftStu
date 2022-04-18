@@ -22,9 +22,10 @@ export class NavMenu extends Component {
   }
 
   render () {
-    
-    // const id = "625846c4c0530a12a1b21e1d"
-    // // set url param user id
+    const adminID = "62526df6d30be6196cd5f864";
+    const Logout = () => {
+      localStorage.removeItem("id")
+    }
 
     return (
       <header>
@@ -34,14 +35,14 @@ export class NavMenu extends Component {
             <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
             <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
               <ul className="navbar-nav flex-grow">
-                <NavItem>
-                  <NavLink tag={Link} className="text-dark" to={`/createpost`}>CreatePost</NavLink>
-                </NavItem>
+                {localStorage.getItem("id")===adminID&&<NavItem>
+                  <NavLink tag={Link} className="text-dark" to={"/createpost"}>CreatePost</NavLink>
+                </NavItem>}
                 <NavItem>
                   <NavLink tag={Link} className="text-dark" to="/profile">Profile</NavLink>
                 </NavItem>
                 <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/login">Logout</NavLink>
+                <NavLink tag={Link} className="text-dark" to="/login" onClick={Logout}>Logout</NavLink>
                 </NavItem>
               </ul>
             </Collapse>
