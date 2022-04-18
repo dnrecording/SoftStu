@@ -6,17 +6,12 @@ import "./Profile.css";
 
 function LoginPage() {
   const navigate = useNavigate();
-  const url = `https://localhost:7290/api/authenticate`;
+  const url = `https://localhost:7290/authenticate`;
 
   const {
     register,
     handleSubmit,
   } = useForm();
-
-  const [usernamelogin, setUsernameLogin] = useState("");
-  const [passwordlogin, setPasswordLogin] = useState("");
-
-  const [isPass, setisPass] = useState(0);
 
   async function authen(authenData) {
     const userSignin = await axios.get(url, {

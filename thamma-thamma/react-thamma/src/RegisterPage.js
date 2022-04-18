@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 
 function RegisterPage() {
   const navigate = useNavigate();
-  const url = "https://localhost:7290/api/test";
+  const url = "https://localhost:7290/api/signup";
 
   const{
     register,
@@ -16,7 +16,7 @@ function RegisterPage() {
   async function fetchCreate(create_data) {
     var allData = { ...create_data, status: "true", img: "https://sv1.picz.in.th/images/2022/04/14/8sJnIe.jpg" }
     const userCreated = await axios(url,{method: "POST", data: allData});
-    if (userCreated.status == 201){
+    if (userCreated.status === 201){
       navigate("/login")
   }
     // console.log(userCreated)
