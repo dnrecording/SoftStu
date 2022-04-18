@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace ThammaApi.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
 public class UserController : ControllerBase
 {
     private readonly UserService _userService;
@@ -13,10 +12,12 @@ public class UserController : ControllerBase
     public UserController(UserService userService) =>
         _userService = userService;
 
+    [Route("api/[controller]")]
     [HttpGet]
     public async Task<List<User>> Get() =>
         await _userService.GetAsync();
 
+    [Route("api/[controller]")]
     [HttpGet("{id:length(24)}")]
     public async Task<ActionResult<User>> Get(string id)
     {
@@ -32,6 +33,7 @@ public class UserController : ControllerBase
         return user;
     }
 
+    [Route("api/[controller]")]
     [HttpPost]
     public async Task<IActionResult> Post(User newUser)
     {
@@ -40,6 +42,7 @@ public class UserController : ControllerBase
         return CreatedAtAction(nameof(Get), new { id = newUser.Id }, newUser);
     }
 
+    [Route("api/[controller]")]
     [HttpPut("{id:length(24)}")]
     public async Task<IActionResult> Update(string id, User updatedUser)
     {
@@ -57,6 +60,7 @@ public class UserController : ControllerBase
         return NoContent();
     }
 
+    [Route("api/[controller]")]
     [HttpDelete("{id:length(24)}")]
     public async Task<IActionResult> Delete(string id)
     {
@@ -70,5 +74,24 @@ public class UserController : ControllerBase
         await _userService.RemoveAsync(id);
 
         return NoContent();
+    }
+
+    [Route("api/authenticate")]
+    [HttpDelete("{username, password}")]
+    public async Task<ActionResult<User>> Authenticate(string username, string password)
+    {
+        var user = await _userService.GetUsernameAsync(username);
+
+        if (user is null)
+        {
+            return NotFound();
+        }
+
+        if (password == user.password && user.status == "true")
+        {
+            return user;
+        }
+
+        return NotFound();
     }
 }
