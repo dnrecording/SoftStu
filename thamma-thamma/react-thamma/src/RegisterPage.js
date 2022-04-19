@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 
 function RegisterPage() {
   const navigate = useNavigate();
-  const url = "https://localhost:7290/api/signup";
+  const url = "https://localhost:7290/api/user";
 
   const{
     register,

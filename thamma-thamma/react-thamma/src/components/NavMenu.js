@@ -38,6 +38,9 @@ export class NavMenu extends Component {
                 {localStorage.getItem("id")===adminID&&<NavItem>
                   <NavLink tag={Link} className="text-dark" to={"/createpost"}>CreatePost</NavLink>
                 </NavItem>}
+                {localStorage.getItem("id")===adminID&&<NavItem>
+                  <NavLink tag={Link} className="text-dark" to={"/manage"}>Manage User</NavLink>
+                </NavItem>}
                 <NavItem>
                   <NavLink tag={Link} className="text-dark" to="/profile">Profile</NavLink>
                 </NavItem>

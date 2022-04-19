@@ -188,7 +188,7 @@ function Profile() {
                     </div>
                     <div class="text-end">
                       <br></br>
-                      {data[0] != adminID && (
+                      {data[0] !== adminID && (
                         <a class="text-danger" onClick={handleShow}>
                           Delete account
                         </a>

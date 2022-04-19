@@ -55,10 +55,10 @@ function OtherProfile() {
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
     (async () => {
-      if (userID === currentuser) {
-        navigate("/profile");
-      }
-      else if(currentuser === null){
+      // if (userID === currentuser) {
+      //   navigate("/profile");
+      // }
+      if(currentuser === null){
         navigate("/login")
       } 
       else {
@@ -93,7 +93,7 @@ function OtherProfile() {
                       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="d-flex flex-column text-center">
                           {/* need credential to identify current user */}
-                          {adminID === currentuser && data[7] === "true" && (
+                          {adminID === currentuser && adminID !== userID && data[7] === "true" && (
                             <button
                               type="button"
                               id="ban"
