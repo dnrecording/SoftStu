@@ -1,0 +1,36 @@
+.contentPageCard {
+    width: 45vw;
+    border-width: 20px;
+    border-color: black;
+    border-radius: 30px;
+    background-color: #dce0e6;
+}
+
+.contentPageImage {
+    border-radius: 30px 30px 0px 00px;
+}
+
+.contentPageComment {
+    position: fixed;
+    width: 20vw;
+    height: 70vh;
+    border-width: 20px;
+    border-color: black;
+    border-radius: 30px;
+    background-color: #dce0e6;
+}
+
+.center-col {
+    height: 55vh;
+    flex: 1;
+    overflow-y: scroll;
+  }
+
+.ContentpageLike-button{
+    right: 0;
+}
+
+.myComment {
+    flex-direction: row;
+    width: 17vw;
+}
