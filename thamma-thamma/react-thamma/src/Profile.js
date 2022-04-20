@@ -67,7 +67,7 @@ function Profile() {
         <div class="container">
           <div class="row gutters">
             <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
-              <div class="card h-100 border-0">
+              <div class="card h-100 border-0 mt-4">
                 <div class="card-body">
                   <div class="account-settings">
                     <div class="user-profile">
@@ -100,7 +100,7 @@ function Profile() {
               </div>
             </div>
             <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-              <div class="card h-100 border-0">
+              <div class="card h-100 border-0 mt-4">
                 <div class="card-body">
                   <div class="row gutters">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
