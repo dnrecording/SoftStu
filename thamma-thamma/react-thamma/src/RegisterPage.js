@@ -29,6 +29,10 @@ function RegisterPage() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <div classNameNameName="App">
+          <div className="container">
+            <div className="row d-flex justify-content-center">
+              <div className="col-md-4"></div>
       <h3>Register</h3>
 
       <div className="form-group">
@@ -136,6 +140,9 @@ function RegisterPage() {
       <p className="forgot-password text-right">
         Already registered <a href="login">log in?</a>
       </p>
+      </div>
+      </div>
+      </div>
     </form>
   );
 }
