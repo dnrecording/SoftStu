@@ -8,6 +8,7 @@ import ContentPage from "./ContentPage";
 import LoginPage from "./LoginPage";
 import RegisterPage from "./RegisterPage";
 import CreatePostPage from "./CreatePostPage";
+import UserTable from "./components/UserTable";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/login" element={<LoginPage />}></Route>
           <Route path="/register" element={<RegisterPage />}></Route>
           <Route path="/createpost" element={<CreatePostPage />}></Route>
+          <Route path="/manage" element={<UserTable />}></Route>
         </Routes>
       </Router>
   );
