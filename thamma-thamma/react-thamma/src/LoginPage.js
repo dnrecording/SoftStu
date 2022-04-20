@@ -36,12 +36,18 @@ function LoginPage() {
               <div className="col-md-4">
                 <div class="bg-img-login">
                   <Card className="card-size">
-                    <div class="row g-0">
-                      <div class="col-md-4">
-                        <img src="https://mdbcdn.b-cdn.net/img/new/fluid/nature/015.webp" className="card-login" ></img> 
-                      </div>
-                      <div class="col-md-8 pb-3 pt-3 pe-3">
+                    <div class="row">
+                      {/* <div class="col-md-4">
+                        <img src="https://mdbcdn.b-cdn.net/img/new/fluid/nature/015.webp" className="card-login-pic" ></img> 
+                      </div> */}
+                      <div class="ps-5 pb-3 pt-3 pe-5">
+                      <br></br>
                       <h3 class="text-center">Sign In</h3>
+                      <br></br>
+                      <h3 class="text-center">THAMMA</h3>
+                      <br></br>
+                      <br></br>
+                      <br></br>
                       <div className="form-group">
                         <label>Username</label>
                         <input
