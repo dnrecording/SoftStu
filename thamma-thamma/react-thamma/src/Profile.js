@@ -33,8 +33,13 @@ function Profile() {
       status: data[7],
     };
     const usersEdit = await axios.put(url, update_data);
-    setData(Object.values(usersEdit.data));
-    window.location.reload(false); // refresh window
+    const users = await axios.get(url);
+    setData(Object.values(users.data));
+
+    document.getElementById("fName").value = "";
+    document.getElementById("lName").value = "";
+    document.getElementById("eMail").value = "";
+    document.getElementById("img").value = "";
   }
 
   const onSubmit = (edit_data) => {
@@ -182,7 +187,7 @@ function Profile() {
                           class="form-control"
                           id="img"
                           placeholder={data[6]}
-                          {...register("img")}
+                          {...register("img",{required: true})}
                         ></input>
                       </div>
                     </div>

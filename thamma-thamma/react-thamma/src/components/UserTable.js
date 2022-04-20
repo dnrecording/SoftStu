@@ -14,13 +14,15 @@ const UserTable = () => {
   async function onBan(ban_data, id) {
     var banUrl = url + `/${id}`
     await axios.put(banUrl, ban_data);
-    window.location.reload(false); // refresh window
+    const { data } = await axios.get(url);
+    setuserList({ lists: data });
   }
 
   async function onUnBan(unban_data, id) {
     var unbanUrl = url + `/${id}`
     await axios.put(unbanUrl, unban_data);
-    window.location.reload(false); // refresh window
+    const { data } = await axios.get(url);
+    setuserList({ lists: data });
   }
 
   useEffect(() => {
