@@ -1,21 +1,70 @@
 import React, { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { Modal, Button } from 'react-bootstrap';
 import { useNavigate } from "react-router";
 import axios from "axios";
+import { useForm } from "react-hook-form";
 import "./Profile.css";
-import { Layout } from "./components/Layout";
 
 function LoginPage() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const url = `https://localhost:7290/authenticate`;
 
-    return (
-        <div>
-            <h1>Login Page</h1>
-            <Button class="btn btn-primary mx-2" onClick={() => {navigate("/")}}>Login</Button>
-            <Button class="btn btn-primary mx-2" onClick={() => {navigate("/register")}}>Register</Button>
-        </div>
-    );
+  const {
+    register,
+    handleSubmit,
+  } = useForm();
+
+  async function authen(authenData) {
+    const userSignin = await axios.get(url, {
+      params: { username: authenData.username, password: authenData.password },
+    });
+    if (userSignin.status === 200){
+        navigate("/")
+        localStorage.setItem("id", userSignin.data.id);
+        // set credential
+    }
+  }
+
+  const onSubmit = (authen_data) => {
+    authen(authen_data);
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <h3>Sign In</h3>
+      <div className="form-group">
+        <label>Username</label>
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Enter Username"
+          {...register("username")}
+        />
+      </div>
+      <div className="form-group">
+        <label>Password</label>
+        <input
+          type="password"
+          className="form-control"
+          placeholder="Enter password"
+          {...register("password")}
+        />
+      </div>
+      <div className="form-group"></div>
+      <button
+        type="submit"
+        className="btn btn-primary btn-block"
+      >
+        Submit
+      </button>
+      <button
+        type="button"
+        className="btn btn-primary btn-block"
+        onClick={()=>{navigate("/register")}}
+      >
+        Sign Up
+      </button>
+    </form>
+  );
 }
 
 export default LoginPage;
