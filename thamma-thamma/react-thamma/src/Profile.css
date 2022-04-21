@@ -100,3 +100,28 @@ body {
   border-color: #285e8e; 
   border: 0;
 } */
+
+.bg {
+  /* Full height */
+  height: 100vh; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+.bg img{
+  opacity: 50%;
+  /* Full height */
+  height: 100%; 
+  width: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+  position: absolute;
+}
