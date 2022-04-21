@@ -1,0 +1,6 @@
+@import '~antd/dist/antd.css';
+
+.writeSubmit {
+    margin: 20px;
+    left: 84.5%;
+}
