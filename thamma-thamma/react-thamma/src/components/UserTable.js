@@ -14,13 +14,15 @@ const UserTable = () => {
   async function onBan(ban_data, id) {
     var banUrl = url + `/${id}`
     await axios.put(banUrl, ban_data);
-    window.location.reload(false); // refresh window
+    const { data } = await axios.get(url);
+    setuserList({ lists: data });
   }
 
   async function onUnBan(unban_data, id) {
     var unbanUrl = url + `/${id}`
     await axios.put(unbanUrl, unban_data);
-    window.location.reload(false); // refresh window
+    const { data } = await axios.get(url);
+    setuserList({ lists: data });
   }
 
   useEffect(() => {
@@ -28,15 +30,16 @@ const UserTable = () => {
       const { data } = await axios.get(url);
       setuserList({ lists: data });
       // console.log(data);
+      // console.log(userList.lists);
     };
     fetchUserList();
   }, [setuserList]);
 
   return (
     <Layout>
-      <Container>
+      <Container class="mt-4">
         <ReactBootstrap.Table striped bordered hover>
-          <thead>
+          <thead class="text-center">
             <tr>
               <th>Username</th>
               <th>Email</th>
@@ -53,7 +56,8 @@ const UserTable = () => {
                   <td>{item.email}</td>
                   <td>{item.fname}</td>
                   <td>{item.lname}</td>
-                  <td>
+                  
+                  <td class="text-center">
                     {item.status === "true" && item.id !== adminID && (
                       <button
                         type="button"
