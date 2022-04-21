@@ -30,6 +30,7 @@ const UserTable = () => {
       const { data } = await axios.get(url);
       setuserList({ lists: data });
       // console.log(data);
+      // console.log(userList.lists);
     };
     fetchUserList();
   }, [setuserList]);

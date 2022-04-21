@@ -10,15 +10,12 @@ function ContentPage() {
     const navigate = useNavigate();
 
     const [data, setData] = useState({});
-    const [newComment, setNewComment] = useState("");
+    const [userList, setUserList] = useState({});
     let currentuser = localStorage.getItem("id");
     const url = `https://localhost:7290/api/post/625fb10c1a7753903c96eb5d`;
-    const urlUser = `https://localhost:7290/api/user/`;
-
-    const items = [...Array(100)].map((val, i) => `Item ${i}`);
+    const urlUser = `https://localhost:7290/api/user`;
 
     async function fetchEdit(edit_data) {
-        // const newComments = data[4].push(edit_data);
         if(edit_data != null){
             data[4].push(edit_data);
         }
@@ -34,11 +31,6 @@ function ContentPage() {
         const myPost = await axios.get(url);
         setData(Object.values(myPost.data));
       }
-    
-    const updateComment = (edit_data) => {
-        console.log(edit_data);
-        fetchEdit(edit_data);
-    };
 
     function updateNewComment(){
         var myComment = document.getElementById("comment").value;
@@ -52,12 +44,6 @@ function ContentPage() {
         fetchEdit();
     }
 
-    async function getUsernamebyID(id){
-        // const postName = await axios.get(urlUser+id);
-        // console.log(postName.data.username);
-        return "Hello";
-    }
-
     useEffect(() => {
         (async () => {
           if (currentuser === null) {
@@ -65,6 +51,13 @@ function ContentPage() {
           } else {
             const myPost = await axios.get(url);
             setData(Object.values(myPost.data));
+
+            const allUser = await axios.get(urlUser);
+            console.log(allUser.data);
+            setUserList(allUser.data);
+            // console.log(userList[0].username);
+            // userList.lists.map((item) => (console.log(item.username)));
+            //console.log(userList.lists);
           }
         })();
       }, []);
@@ -72,6 +65,7 @@ function ContentPage() {
 
     return (
         <Layout>
+            { JSON.stringify(userList)}
             <div className='row no-gutters'>
                 <div class="col-auto">
                     <Card className='contentPageCard'>
@@ -114,7 +108,6 @@ function ContentPage() {
                             </div>
                         </Card.Body>
                     </Card>
-                    
                 </div>
             </div>
         </Layout>
