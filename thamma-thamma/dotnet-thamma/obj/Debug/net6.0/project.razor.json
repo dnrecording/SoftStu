@@ -16331,6 +16331,16 @@
       "FilePath": "c:\\Users\\UNS_CT\\Documents\\GitHub\\SoftStu\\thamma-thamma\\dotnet-thamma\\Views\\_ViewImports.cshtml",
       "TargetPath": "Views\\_ViewImports.cshtml",
       "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Work\\SoftStu\\thamma-thamma\\dotnet-thamma\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Work\\SoftStu\\thamma-thamma\\dotnet-thamma\\Views\\Shared\\_Layout.cshtml",
+      "TargetPath": "Views\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
     }
   ],
   "SerializationFormat": "0.2"

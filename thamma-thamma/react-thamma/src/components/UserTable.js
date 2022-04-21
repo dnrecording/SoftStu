@@ -37,9 +37,9 @@ const UserTable = () => {
 
   return (
     <Layout>
-      <Container>
+      <Container class="mt-4">
         <ReactBootstrap.Table striped bordered hover>
-          <thead>
+          <thead class="text-center">
             <tr>
               <th>Username</th>
               <th>Email</th>
@@ -56,7 +56,8 @@ const UserTable = () => {
                   <td>{item.email}</td>
                   <td>{item.fname}</td>
                   <td>{item.lname}</td>
-                  <td>
+                  
+                  <td class="text-center">
                     {item.status === "true" && item.id !== adminID && (
                       <button
                         type="button"
