@@ -33,8 +33,13 @@ function Profile() {
       status: data[7],
     };
     const usersEdit = await axios.put(url, update_data);
-    setData(Object.values(usersEdit.data));
-    window.location.reload(false); // refresh window
+    const users = await axios.get(url);
+    setData(Object.values(users.data));
+
+    document.getElementById("fName").value = "";
+    document.getElementById("lName").value = "";
+    document.getElementById("eMail").value = "";
+    document.getElementById("img").value = "";
   }
 
   const onSubmit = (edit_data) => {
@@ -63,10 +68,11 @@ function Profile() {
   return (
     <Layout>
       <form onSubmit={handleSubmit(onSubmit)}>
+        
         <div class="container">
           <div class="row gutters">
             <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
-              <div class="card h-100">
+              <div class="card h-100 border-0 mt-4">
                 <div class="card-body">
                   <div class="account-settings">
                     <div class="user-profile">
@@ -99,7 +105,7 @@ function Profile() {
               </div>
             </div>
             <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-              <div class="card h-100">
+              <div class="card h-100 border-0 mt-4">
                 <div class="card-body">
                   <div class="row gutters">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -168,7 +174,7 @@ function Profile() {
                           {...register("email", {
                             required: true,
                             pattern:
-                              /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                              /^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
                           })}
                         ></input>
                         <p class="text-danger">{errors.email?.message}</p>
@@ -182,17 +188,19 @@ function Profile() {
                           class="form-control"
                           id="img"
                           placeholder={data[6]}
-                          {...register("img")}
+                          {...register("img",{required: true})}
                         ></input>
                       </div>
                     </div>
-                    <div class="text-end">
+                    <div>
                       <br></br>
+                      <button class="delete-btn ">
                       {data[0] !== adminID && (
                         <a class="text-danger" onClick={handleShow}>
                           Delete account
                         </a>
                       )}
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -200,6 +208,7 @@ function Profile() {
             </div>
           </div>
         </div>
+        
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>Confirm to delete account</Modal.Title>
@@ -207,13 +216,14 @@ function Profile() {
           <Modal.Body>Are you sure to delete this account?</Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
-              Close
+              Cancel
             </Button>
             <Button variant="danger" onClick={deleteAcc}>
               Confirm Delete
             </Button>
           </Modal.Footer>
         </Modal>
+        
       </form>
     </Layout>
   );

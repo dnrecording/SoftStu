@@ -23,6 +23,7 @@ builder.Services.Configure<ThammaDatabaseSettings>(
     builder.Configuration.GetSection("ThammaDatabase"));
 
 builder.Services.AddSingleton<UserService>();
+builder.Services.AddSingleton<PostService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

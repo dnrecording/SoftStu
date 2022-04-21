@@ -26,8 +26,8 @@ function OtherProfile() {
       status: "false",
     };
     const usersBan = await axios.put(url, ban_data);
-    setData(Object.values(usersBan.data));
-    window.location.reload(false); // refresh window
+    const users = await axios.get(url);
+    setData(Object.values(users.data));
   }
 
   const onBan = () => {
@@ -45,8 +45,8 @@ function OtherProfile() {
       status: "true",
     };
     const usersUnban = await axios.put(url, unban_data);
-    setData(Object.values(usersUnban.data));
-    window.location.reload(false); // refresh window
+    const users = await axios.get(url);
+    setData(Object.values(users.data));
   }
 
   const onUnban = () => {
@@ -64,7 +64,6 @@ function OtherProfile() {
       else {
         const users = await axios.get(url);
         setData(Object.values(users.data));
-        console.log(Object.values(users.data));
       }
     })();
   }, []);
@@ -75,7 +74,7 @@ function OtherProfile() {
         <div class="container">
           <div class="row gutters">
             <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
-              <div class="card h-100">
+              <div class="card h-100 border-0 mt-4">
                 <div class="card-body">
                   <div class="account-settings">
                     <div class="user-profile">
@@ -124,7 +123,7 @@ function OtherProfile() {
               </div>
             </div>
             <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-              <div class="card h-100">
+              <div class="card h-100 border-0 mt-4">
                 <div class="card-body">
                   <div class="row gutters">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
