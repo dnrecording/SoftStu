@@ -23,4 +23,13 @@ public class Post
 
     [BsonElement("like")]
     public int like { get; set; } = 0;
+
+    [BsonElement("username")]
+    public string username { get; set; } = null!;
+
+    [BsonElement("tag")]
+    public string tag { get; set; } = null!;
+
+    [BsonElement("date")]
+    public DateTime date { get; set; } 
 }
