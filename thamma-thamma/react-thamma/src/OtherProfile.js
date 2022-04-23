@@ -62,6 +62,7 @@ function OtherProfile() {
         navigate("/login")
       } 
       else {
+        console.log("UserID = " + userID);
         const users = await axios.get(url);
         setData(Object.values(users.data));
       }

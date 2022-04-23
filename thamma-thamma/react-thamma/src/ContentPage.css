@@ -8,12 +8,14 @@
 
 .contentPageImage {
     border-radius: 30px 30px 0px 00px;
+    height: 500px;
+    object-fit: cover;
 }
 
 .contentPageComment {
     position: fixed;
-    width: 20vw;
-    height: 75vh;
+    width: 400px;
+    height: 870px;
     border-width: 20px;
     border-color: black;
     border-radius: 30px;
@@ -34,17 +36,19 @@
 
 .myComment {
     flex-direction: row;
-    width: 17vw;
+    width: 360px;
+
 }
 
 .input-comment{
-    width: 260px;
+    width: 290px;
     height: 100px;
     margin-top: 35px;
 }
 
 .commentCard {
-    width: 250px;
+    display: flex;
+    width: 330px;
     border-width: 20px;
     border-color: black;
     border-radius: 30px;
@@ -52,11 +56,65 @@
 }
 
 .ContentpageSubmit-button{
-    margin-bottom: 90px;
-    margin-left: 5px;
+    margin-top: 35px;
     height: 100px;
 }
 
 .card-title{
     font-weight: 700;
+}
+
+.link-noUnderline{
+    color: black;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+.deleteCommentButton{
+    color: red;
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+    text-align: center;
+    align-items: center;
+    line-height: 0;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.avatar{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 100px;
+}
+
+.commentRow{
+    display: flex;
+    flex-direction: row;
+}
+
+.commentColumn{
+    display: flex;
+    flex-direction: column;
+    width: 235px;
+}
+
+.like-button{
+    position: absolute;
+    bottom: -3%;
+    left: 95%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #555;
+    color: white;
+    font-size: 16px;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.commentTopic{
+    font-size: 23px;
 }
