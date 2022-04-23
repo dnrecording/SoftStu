@@ -33,6 +33,10 @@ function RegisterPage() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <div class="bg">
+          <div className="overflow-heidden">
+            <img src="https://static.trueplookpanya.com/cmsblog/1832/53832/banner_file.jpg"></img>
+          </div>
         <div className="container">
           <div className="row d-flex justify-content-center">
             <div className="col-md-4">
@@ -157,6 +161,7 @@ function RegisterPage() {
               </Card>
             </div>
           </div>
+        </div>
         </div>
     </form>
   );
