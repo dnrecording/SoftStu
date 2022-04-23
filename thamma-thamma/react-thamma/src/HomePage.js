@@ -28,8 +28,8 @@ function HomePage() {
     <Layout>
       <h1>Home Page</h1>
       {post && post.length
-        ? post.map((item, i) => (
-          <ContentCard  id ={item.id} title = {item.title} content = {item.content} img = {item.img}/>
+        ? post.map((item) => (
+          <ContentCard key = {item.id} {...item}/>
           ))
         : ""}
     </Layout>
