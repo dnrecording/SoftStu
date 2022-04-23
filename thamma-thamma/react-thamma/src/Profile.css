@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  padding-top: 40px;
+  /* padding-top: 40px; */
   color: #2e323c;
   background: #f5f6fa;
   position: relative;
@@ -73,7 +73,7 @@ body {
 
 .card-size {
   width: 100%;
-  margin-top: auto;
+  margin-top: 100px;
   /* height: 300%;
   align-items: center;
   margin-left: auto;
@@ -94,34 +94,64 @@ body {
   justify-self: end;
   margin-left: 750px;
 }
-/* .delete-btn:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
-  color: rgb(255, 0, 0);
-  background-color: #ffffff;
-  border-color: #285e8e; 
-  border: 0;
-} */
+
 
 .bg {
   /* Full height */
   height: 100vh; 
-
+  
   /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-
+  overflow: hidden;
 }
 
 .bg img{
-  opacity: 50%;
+  opacity: 30%;
   /* Full height */
   height: 100%; 
   width: 100%;
-
   /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   
   position: absolute;
+  transition: transform 0.8s; /* Animation */
+}
+
+/* .bg img:hover{
+  transform: scale(1.2);  
+  overflow: hidden;
+} */
+.inner{
+  overflow: hidden;
+  
+}
+
+.regispage{
+  /* Full height */
+  height: 100vh; 
+  
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.regispage div{
+  background-color: rgb(255, 203, 107);
+  opacity: 30%;
+  /* Full height */
+  height: 100%; 
+  width: 100%;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+  position: absolute;
+  transition: transform 3.8s; /* Animation */
 }
