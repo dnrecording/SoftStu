@@ -17,7 +17,6 @@ function ContentPage() {
     const [userList, setUserList] = useState({});
     let currentuser = localStorage.getItem("id");
 
-    // const url = `https://localhost:7290/api/post/625fb10c1a7753903c96eb5d`;
     const url = `https://localhost:7290/api/post/${postID}`;
     const urlUser = `https://localhost:7290/api/user`;
 
@@ -31,7 +30,10 @@ function ContentPage() {
           content: data[2],
           img: data[3],
           comments: data[4],
-          like: data[5]
+          like: data[5],
+          username: data[6],
+          tag: data[7],
+          date: data[8]
         };
         await axios.put(url, update_data);
         const myPost = await axios.get(url);
