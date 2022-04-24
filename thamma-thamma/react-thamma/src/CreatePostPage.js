@@ -1,8 +1,5 @@
 import "./CreatePost.css";
 import { Layout } from "./components/Layout";
-import { Button, Form, Input, Upload, Tooltip } from "antd";
-import { PlusCircleOutlined } from "@ant-design/icons";
-import TextArea from "antd/lib/input/TextArea";
 import React from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
@@ -26,7 +23,7 @@ function CreatePostPage() {
       author: adminID,
       comments: [],
       like: [],
-      username: ""
+      date: new Date()
     };
     const postCreated = await axios(url, { method: "POST", data: allData });
     if (postCreated.status === 201) {

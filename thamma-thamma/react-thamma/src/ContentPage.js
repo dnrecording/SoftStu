@@ -19,7 +19,7 @@ function ContentPage() {
 
     const [data, setData] = useState({});
     const [userList, setUserList] = useState({});
-    const [postList, setPostList] = useState({});
+
     let currentuser = localStorage.getItem("id");
 
     const url = `https://localhost:7290/api/post/${postID}`;
@@ -71,20 +71,10 @@ function ContentPage() {
         fetchEdit();
     }
 
-    function deletePost() {
+    async function deletePost() {
         console.log("delete " + postID);
-        for (var i = 0; i < postList.length; i++) {
-            if (postList[i].id === postID) {
-                console.log("Equal");
-                postList.splice(i, 1);
-            }
-        }
-
-        fetchEdit();
-    }
-
-    function sayYes() {
-        console.log("Say Yes!!!");
+        await axios.delete(url);
+        navigate("/");
     }
 
     function dataToDate(data) {
@@ -100,9 +90,6 @@ function ContentPage() {
                 const myPost = await axios.get(url);
                 setData(Object.values(myPost.data));
 
-                const allPost = await axios.get(urlPost);
-                setPostList(allPost.data);
-
                 const allUser = await axios.get(urlUser);
                 setUserList(allUser.data);
             }
@@ -117,23 +104,45 @@ function ContentPage() {
 
         return (
             <div style={{ marginLeft: "10px" }}>
-                <h4>ต้องการลบใช่หรือไม่</h4>
+                <span style={{fontSize:"20px", marginRight:"50px"}}>ต้องการลบความคิดเห็นใช่หรือไม่</span>
                 <button className="real-yesno-button" onClick={handleClick}>
-                    <span className="like-text" style={{ color: "#FFFFFF" }}>ยืนยัน</span>
+                    <span style={{ color: "#FFFFFF", fontSize:"20px"}}>ยืนยัน</span>
+                </button>
+            </div>
+        );
+    };
+
+    const YesNoDeletePostButton = ({ onYes, closeToast }) => {
+        const handleClick = () => {
+            onYes();
+            closeToast();
+        };
+
+        return (
+            <div style={{ marginLeft: "10px" }}>
+                <span style={{fontSize:"20px"}}>ต้องการลบโพสใช่หรือไม่</span>
+                <button className="real-yesno-button" onClick={handleClick}>
+                    <span style={{ color: "#FFFFFF", fontSize:"20px"}}>ยืนยัน</span>
                 </button>
             </div>
         );
     };
 
     const notify = (index) => {
-        toast.success(<YesNoButton onYes={() => deleteComment(index)} />, {
+        toast.error(<YesNoButton onYes={() => deleteComment(index)} />, {
+            position: toast.POSITION.TOP_RIGHT
+        });
+    };
+
+    const notifyDeletePost = (index) => {
+        toast.error(<YesNoDeletePostButton onYes={() => deletePost(postID)} />, {
             position: toast.POSITION.TOP_RIGHT
         });
     };
 
     return (
         <Layout>
-            <div className='row no-gutters'>
+            <div className='row no-gutters' style={{marginTop:"120px"}}>
                 <div class="col-auto">
                     <Card className='contentPageCard'>
                         <div style={{ position: "relative" }}>
@@ -175,13 +184,12 @@ function ContentPage() {
                                     </div>
                                 </button>
                             }
-                            {/* <button className="real-delete-button" onClick={deletePost}>
+                            <button className="real-delete-button" onClick={(e) => notifyDeletePost(e)}>
                                 <div>
-                                    <FaHandMiddleFinger style={{color:"#FFFFFF"}}/>
+                                    <FaHandMiddleFinger style={{color:"#FFFFFF",fontSize:"30px"}}/>
                                     <span className="like-text">Delete</span>
                                 </div>
-                            </button> */}
-                            {/* <button onClick={notify}>Notify!</button> */}
+                            </button>
                             <ToastContainer />
                         </Card.Body>
                     </Card>
@@ -203,7 +211,6 @@ function ContentPage() {
                                                     <Card.Title style={{ display: "flex", justifyContent: "space-between", margin: "0px 0px 20px 0px" }}>
                                                         <a href={"/profile/" + item[1]} className="link-noUnderline">{(userList.find(o => o.id === item[1])).username}</a>
                                                         {currentuser === '62526df6d30be6196cd5f864' ? <button id={"deleteButton" + i} className="deleteCommentButton" onClick={(e) => notify(i, e)}><FaTrashAlt style={{ color: "#F1011E" }} /></button> : " "}
-                                                        {/* {currentuser === '62526df6d30be6196cd5f864' ? <button id={"deleteButton" + i} className="deleteCommentButton" onClick={(e) => deleteComment(i, e)}><FaTrashAlt style={{color:"#F1011E"}} /></button> : " "} */}
                                                     </Card.Title>
                                                     <Card.Text style={{ margin: "0px 20px 0px 20px" }}>{item[0]}</Card.Text>
                                                 </div>
