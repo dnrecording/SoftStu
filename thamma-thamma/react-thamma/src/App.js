@@ -9,6 +9,7 @@ import LoginPage from "./LoginPage";
 import RegisterPage from "./RegisterPage";
 import CreatePostPage from "./CreatePostPage";
 import UserTable from "./components/UserTable";
+import NotFound from "./components/NotFound";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/register" element={<RegisterPage />}></Route>
           <Route path="/createpost" element={<CreatePostPage />}></Route>
           <Route path="/manage" element={<UserTable />}></Route>
+          <Route path="/*" element={<NotFound/>}></Route>
         </Routes>
       </Router>
   );
