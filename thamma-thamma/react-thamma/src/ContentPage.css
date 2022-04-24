@@ -100,21 +100,87 @@
     width: 235px;
 }
 
-.like-button{
+.like-amount{
     position: absolute;
+    display: flex;
+    min-width: 130px;
     bottom: -3%;
     left: 95%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
-    background-color: #555;
-    color: white;
+    background-color: rgba(255, 255, 255, 85%);
+    color: #1B98E8;
     font-size: 16px;
     padding: 12px 24px;
     border: none;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 20px;
 }
 
 .commentTopic{
     font-size: 23px;
+}
+
+.real-like-button{
+    background-color: #FFFFFF;
+    height: 50px;
+    width: 120px;
+    border-radius: 10px;
+    border-width: 0px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.real-yesno-button{
+    background-color: #28CF4B;
+    height: 40px;
+    width: 100px;
+    border-radius: 10px;
+    border-width: 0px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.real-liked-button{
+    background-color: #FFFFFF;
+    height: 50px;
+    border-radius: 10px;
+    border-width: 0px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: 10px;
+}
+
+.real-delete-button{
+    background-color: #D6001A;
+    height: 50px;
+    width: 120px;
+    border-radius: 10px;
+    border-width: 0px;
+}
+
+.test-like-button{
+    height: 50px;
+    width: 120px;
+    border-radius: 10px;
+    border-width: 0px;
+    background-repeat: no-repeat;
+    background-image: radial-gradient(circle, #ff0081 20%, transparent 0), 
+    radial-gradient(circle, #ff0081 20%, transparent 0),
+    radial-gradient(circle, #ff0081 20%, transparent 0), ;
+    background-size: 10% 10%, 20% 20%, 15% 15%,;
+    background-position: 18% 40%, 20% 31%, 30% 30%,;
+
+    transition:.75s background-position ease-in-out,75s background-size ease-in-out;
+}
+
+.test-like-button:hover{
+    background-position: 5% 44%, -5% 20%, 7% 5%;
+    background-size: 0% 0%;
+}
+
+.like-text{
+    font-size: 22px;
+    font-weight: 500;
+    color: white;
 }

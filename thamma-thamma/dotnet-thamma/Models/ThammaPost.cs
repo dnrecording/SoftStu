@@ -24,14 +24,11 @@ public class Post
     [BsonElement("like")]
     public string[] like { get; set; } = null!;
 
-    [BsonElement("username")]
-    public string username { get; set; } = null!;
-
     [BsonElement("tag")]
     public string tag { get; set; } = null!;
 
     [BsonElement("date")]
-    public DateTime date { get; set; }
+    public DateTime date { get; set; } 
 
     [BsonElement("author")]
     public string author { get; set; } = null!;

@@ -6,121 +6,222 @@ import axios from "axios";
 import "./ContentPage.css";
 import { Layout } from "./components/Layout";
 import { Card } from 'react-bootstrap';
+import { AiFillLike, AiOutlineLike, AiOutlineSend } from "react-icons/ai";
+import { FaTrashAlt, FaHandMiddleFinger } from 'react-icons/fa';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function ContentPage() {
     const { id } = useParams(); // read url param post id
     const postID = id;
-    
+
     const navigate = useNavigate();
 
     const [data, setData] = useState({});
     const [userList, setUserList] = useState({});
+    const [postList, setPostList] = useState({});
     let currentuser = localStorage.getItem("id");
 
     const url = `https://localhost:7290/api/post/${postID}`;
+    const urlPost = `https://localhost:7290/api/post`;
     const urlUser = `https://localhost:7290/api/user`;
 
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+
     async function fetchEdit(edit_data) {
-        if(edit_data != null){
+        if (edit_data != null) {
             data[4].push(edit_data);
         }
-        
+
         let update_data = {
-          title: data[1],
-          content: data[2],
-          img: data[3],
-          comments: data[4],
-          like: data[5],
-          username: data[6],
-          tag: data[7],
-          date: data[8]
+            title: data[1],
+            content: data[2],
+            img: data[3],
+            comments: data[4],
+            like: data[5],
+            tag: data[6],
+            date: data[7],
+            author: data[8]
         };
+
         await axios.put(url, update_data);
         const myPost = await axios.get(url);
         setData(Object.values(myPost.data));
-      }
+    }
 
-    function updateNewComment(){
+    function updateNewComment() {
         var myComment = document.getElementById("comment").value;
         document.getElementById("comment").value = "";
         var commenterID = currentuser;
-        fetchEdit([myComment,commenterID]);
+        fetchEdit([myComment, commenterID]);
     }
 
-    function updateLike(){
-        data[5] += 1;
+    function updateLike() {
+        if (!(data[5].includes(currentuser))) {
+            data[5].push(currentuser);
+        } else {
+            data[5].splice(data[5].indexOf(currentuser), 1);
+        }
         fetchEdit();
     }
 
-    function deleteComment(index){
+    function deleteComment(index) {
         console.log("remove " + index);
-        data[4].splice(index,1);
+        data[4].splice(index, 1);
         fetchEdit();
+    }
+
+    function deletePost() {
+        console.log("delete " + postID);
+        for (var i = 0; i < postList.length; i++) {
+            if (postList[i].id === postID) {
+                console.log("Equal");
+                postList.splice(i, 1);
+            }
+        }
+
+        fetchEdit();
+    }
+
+    function sayYes() {
+        console.log("Say Yes!!!");
+    }
+
+    function dataToDate(data) {
+        const date = new Date(data);
+        return date.toLocaleDateString("th-TH", options);
     }
 
     useEffect(() => {
         (async () => {
-          if (currentuser === null) {
-            navigate("/login");
-          } else {
-            const myPost = await axios.get(url);
-            setData(Object.values(myPost.data));
+            if (currentuser === null) {
+                navigate("/login");
+            } else {
+                const myPost = await axios.get(url);
+                setData(Object.values(myPost.data));
 
-            const allUser = await axios.get(urlUser);
-            setUserList(allUser.data);
-          }
+                const allPost = await axios.get(urlPost);
+                setPostList(allPost.data);
+
+                const allUser = await axios.get(urlUser);
+                setUserList(allUser.data);
+            }
         })();
-      }, []);
+    }, []);
 
+    const YesNoButton = ({ onYes, closeToast }) => {
+        const handleClick = () => {
+            onYes();
+            closeToast();
+        };
+
+        return (
+            <div style={{ marginLeft: "10px" }}>
+                <h4>ต้องการลบใช่หรือไม่</h4>
+                <button className="real-yesno-button" onClick={handleClick}>
+                    <span className="like-text" style={{ color: "#FFFFFF" }}>ยืนยัน</span>
+                </button>
+            </div>
+        );
+    };
+
+    const notify = (index) => {
+        toast.success(<YesNoButton onYes={() => deleteComment(index)} />, {
+            position: toast.POSITION.TOP_RIGHT
+        });
+    };
 
     return (
         <Layout>
             <div className='row no-gutters'>
                 <div class="col-auto">
                     <Card className='contentPageCard'>
-                        {/* <img className='contentImage' src="temple1.jpg" /> */}
-                        <div style={{position: "relative"}}>
+                        <div style={{ position: "relative" }}>
                             <Card.Img className="contentPageImage" variant="top" src={data[3]} />
-                            <Button className='like-button' onClick={updateLike}>{data[5]} Like</Button>
+                            {/* {data && data.length ? <Button className='like-amount' onClick={updateLike}>{data[5].length} Like</Button> : ""} */}
+                            {data && data.length ? 
+                                <div className='like-amount'>
+                                <AiFillLike style={{ color: "#1B98E8", fontSize: "25px", margin: "7px 5px 8px 0px" }} />
+                                <span className="like-text" style={{ color: "#1B98E8", margin: "5px" }}>{data[5].length}</span>
+                            </div>
+                            : ""}
                         </div>
                         <Card.Body>
-                            <Card.Title style={{fontSize:"40px"}}>{data[1]}</Card.Title>
-                            <Card.Text style={{padding: "10px 20px 10px 10px", fontSize:"17px"}}>{data[2]}</Card.Text>
+                            {data && data.length && userList && userList.length ?
+                                <Card.Body className="commentRow">
+                                    <img src={(userList.find(o => o.id === data[8])).img} className="avatar"></img>
+                                    <div className="commentColumn">
+                                        <Card.Title style={{ display: "flex", justifyContent: "space-between", margin: "0px 0px 5px 0px" }}>
+                                            <a href={"/profile/" + (userList.find(o => o.id === data[8])).id} className="link-noUnderline">{(userList.find(o => o.id === data[8])).username}</a>
+                                        </Card.Title>
+                                        <Card.Text style={{ margin: "0px 0px 0px 20px" }}>{dataToDate(data[7])}</Card.Text>
+                                    </div>
+                                </Card.Body>
+                                : ""}
+                            <Card.Title style={{ fontSize: "40px", fontWeight: "700" }}>{data[1]}</Card.Title>
+                            <Card.Text style={{ padding: "10px 20px 10px 10px", fontSize: "17px" }}>{data[2]}</Card.Text>
+                            {data && data.length && data[5].includes(currentuser) ?
+                                <button className="real-liked-button" onClick={updateLike}>
+                                    <div>
+                                        <AiFillLike style={{ color: "#1B98E8", fontSize: "25px", margin: "0px 5px 8px 0px" }} />
+                                        <span className="like-text" style={{ color: "#1B98E8" }}>Liked</span>
+                                    </div>
+                                </button>
+                                :
+                                <button className="real-like-button" onClick={updateLike}>
+                                    <div>
+                                        <AiOutlineLike style={{ color: "#1B98E8", fontSize: "25px", margin: "0px 5px 8px 0px" }} />
+                                        <span className="like-text" style={{ color: "#1B98E8" }}>Like</span>
+                                    </div>
+                                </button>
+                            }
+                            {/* <button className="real-delete-button" onClick={deletePost}>
+                                <div>
+                                    <FaHandMiddleFinger style={{color:"#FFFFFF"}}/>
+                                    <span className="like-text">Delete</span>
+                                </div>
+                            </button> */}
+                            {/* <button onClick={notify}>Notify!</button> */}
+                            <ToastContainer />
                         </Card.Body>
                     </Card>
                 </div>
                 <div class="col">
                     <Card className='contentPageComment'>
                         <Card.Body>
-                            <Card.Title className="commentRow" style={{justifyContent: "space-between"}}>
+                            <Card.Title className="commentRow" style={{ justifyContent: "space-between" }}>
                                 <p className="commentTopic">ความคิดเห็น</p>
-                                {data && data.length ? <p className="commentTopic" style={{margin: "0px 155px 0px 0px"}}>{data[4].length} รายการ</p> : ""}
+                                {data && data.length ? <p className="commentTopic" style={{ margin: "0px 155px 0px 0px" }}>{data[4].length} รายการ</p> : ""}
                             </Card.Title>
-                            <div className="center-col" style={{padding: "0px", height: "650px"}}>
-                                <ul style={{padding: "0px"}}>
-                                    { data && data.length && userList && userList.length ? data[4].map((item, i) => (
+                            <div className="center-col" style={{ padding: "0px", height: "650px" }}>
+                                <ul style={{ padding: "0px" }}>
+                                    {data && data.length && userList && userList.length ? data[4].map((item, i) => (
                                         <Card className='commentCard'>
                                             <Card.Body className="commentRow">
                                                 <img src={(userList.find(o => o.id === item[1])).img} className="avatar"></img>
                                                 <div className="commentColumn">
-                                                    <Card.Title style={{display: "flex",justifyContent: "space-between",margin: "0px 0px 20px 0px"}}>
+                                                    <Card.Title style={{ display: "flex", justifyContent: "space-between", margin: "0px 0px 20px 0px" }}>
                                                         <a href={"/profile/" + item[1]} className="link-noUnderline">{(userList.find(o => o.id === item[1])).username}</a>
-                                                        {currentuser === '62526df6d30be6196cd5f864' ? <button id={"deleteButton" + i} className="deleteCommentButton" onClick={(e) => deleteComment(i,e)}>x</button> : " "}
+                                                        {currentuser === '62526df6d30be6196cd5f864' ? <button id={"deleteButton" + i} className="deleteCommentButton" onClick={(e) => notify(i, e)}><FaTrashAlt style={{ color: "#F1011E" }} /></button> : " "}
+                                                        {/* {currentuser === '62526df6d30be6196cd5f864' ? <button id={"deleteButton" + i} className="deleteCommentButton" onClick={(e) => deleteComment(i, e)}><FaTrashAlt style={{color:"#F1011E"}} /></button> : " "} */}
                                                     </Card.Title>
-                                                    <Card.Text style={{margin: "0px 20px 0px 20px"}}>{item[0]}</Card.Text>
+                                                    <Card.Text style={{ margin: "0px 20px 0px 20px" }}>{item[0]}</Card.Text>
                                                 </div>
                                             </Card.Body>
                                         </Card>
                                     )) : ""}
                                 </ul>
                             </div>
-                            <div className="myComment" style={{display: "flex",justifyContent: "space-between"}}>
-                                    <textarea
-                                        type="name"
-                                        class="input-comment"
-                                        id="comment"
-                                    ></textarea>
-                                    <Button id="sendButton" className='ContentpageSubmit-button' onClick={updateNewComment}>Send</Button>
+                            <div className="myComment" style={{ display: "flex", justifyContent: "space-between" }}>
+                                <textarea
+                                    type="name"
+                                    class="input-comment"
+                                    id="comment"
+                                ></textarea>
+                                <Button id="sendButton" className='ContentpageSubmit-button' style={{ paddingLeft: "15px", paddingRight: "15px" }} onClick={updateNewComment}>
+                                    <AiOutlineSend style={{ fontSize: "30px" }} />
+                                    {/* <span style={{fontSize:"25px"}}>ส่ง</span> */}
+                                </Button>
                             </div>
                         </Card.Body>
                     </Card>
