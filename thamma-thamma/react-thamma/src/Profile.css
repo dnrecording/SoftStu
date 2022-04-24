@@ -107,8 +107,8 @@ body {
   overflow: hidden;
 }
 
-.bg img{
-  opacity: 30%;
+.backgroundImage{
+  opacity: 35%;
   /* Full height */
   height: 100%; 
   width: 100%;

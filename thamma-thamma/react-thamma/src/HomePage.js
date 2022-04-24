@@ -20,12 +20,24 @@ function HomePage(props) {
   let checkFound = 0;
 
   //Add Tag Here !!!!
-  const tag = ["WaT", "Tour" , "Bao","Kuy Floyd I na Hee" ,"Oat"];
+  const [alltag, setAllTag] = useState({});
+  var tag = [];
 
   useEffect(() => {
     async function getPost() {
       const response = await client.get("");
       setPost(response.data);
+
+      const unique = (value, index, self) => {
+        return self.indexOf(value) === index
+      }
+      
+      for(var i=0;i<response.data.length;i++){
+        tag.push(response.data[i].tag);
+      }
+
+      tag = tag.filter(unique);
+      setAllTag(tag);
     }
     getPost();
   }, []);
@@ -59,43 +71,46 @@ function HomePage(props) {
       <div className="con-right">
         <div class=" d-none d-xl-block ">
           <div className="searchForm">
-            <input
+          <input
               id="textsearch"
               type="text"
               className="form-control"
               placeholder="Search Blog ..."
+              style={{borderRadius: "2rem"}}
             />
             <Button
               onClick={() =>
-                (setValue(document.getElementById("textsearch").value),notifySuccess("Search Successfully !"))
+                (setValue(document.getElementById("textsearch").value))
               }
+              style={{borderRadius: "2rem", background:'black',margin:'0px 0px 0px 10px',padding:'10px 20px'}}
             >
               Search
             </Button>
           </div>
         
         <div className="navTag">
-          {tag.map((itemTag) => (
-            <button className="mb-3 "
-              onClick={() =>
-                (notifySuccess("Search Successfully !"),checkFound = 0,post.map((item,i) => (
-                  <div>
-                    {item.tag.search(itemTag) !== -1 ? (checkFound++,setValue(itemTag)) : 
-                    notFound(i)}
-                  </div>
-                )))
-              }
-              style={{padding:"10px 25px",border:"0px", borderRadius: "1rem" }}
-            >
-              {itemTag}
-            </button>
-          ))}
+          {alltag && alltag.length ? 
+            alltag.map((itemTag) => (
+              <button className="mb-3 "
+                onClick={() =>
+                  (checkFound = 0,post.map((item,i) => (
+                    <div>
+                      {item.tag.search(itemTag) !== -1 ? (checkFound++,setValue(itemTag)) : 
+                      notFound(i)}
+                    </div>
+                  )))
+                }
+                style={{padding:"3px 20px",border:"0px", borderRadius: "2rem" }}
+              >
+                {itemTag}
+              </button>
+            ))
+          : ""}
         </div>
         </div>
       </div>
       <div className="con-left">
       <ToastContainer />
-        <h1>Home Page</h1>
         {post && post.length ? (
           post.map((item) => (
             <div>

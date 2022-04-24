@@ -12,8 +12,10 @@ function Profile() {
   const adminID = "62526df6d30be6196cd5f864"; // Admin ID
   let currentuser = localStorage.getItem("id");
   const url = `https://localhost:7290/api/user/${currentuser}`;
+  const urlPost = "https://localhost:7290/api/post/";
 
   const [show, setShow] = useState(false);
+  const [postList, setPostList] = useState({});
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -49,8 +51,30 @@ function Profile() {
   const deleteAcc = () => {
     // logout first then delete account
     (async () => {
-      navigate("/", { replace: true });
+      
+      for(var i=0;i<postList.length;i++){
+        // delete every post likes of this user
+        if(postList[i].like.includes(currentuser)){
+          postList[i].like.splice(postList[i].like.indexOf(currentuser),1);
+        }
+
+        for(var j=postList[i].comments.length-1;j>=0;j--){
+          if(postList[i].comments[j].includes(currentuser)){
+            postList[i].comments[j].splice(postList[i].comments[j].indexOf(currentuser),1);
+          }
+
+          if(postList[i].comments[j][1] === currentuser){
+            postList[i].comments.splice(j,1);
+          }
+        }
+
+        // delete every comments of this user
+        await axios.put(urlPost + postList[i].id, postList[i]);
+      }
+
+      // delete user
       await axios.delete(url);
+      navigate("/login", { replace: true });
     })();
   };
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -61,6 +85,9 @@ function Profile() {
       } else {
         const users = await axios.get(url);
         setData(Object.values(users.data));
+
+        const allPost = await axios.get(urlPost);
+        setPostList(allPost.data);
       }
     })();
   }, []);
@@ -77,7 +104,7 @@ function Profile() {
                   <div class="account-settings">
                     <div class="user-profile">
                       <div class="user-avatar">
-                        <img src={data[6]} alt="profile_img"></img>
+                        <img src={data[6]} alt="profile_img" style={{objectFit:"cover"}}></img>
                       </div>
                       <h5 class="user-name" alt="name">
                         {data[4] + " " + data[5]}

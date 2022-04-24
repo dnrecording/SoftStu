@@ -33,24 +33,23 @@ function LoginPage() {
       {
         <div class="bg">
           <div className="overflow-heidden">
-            <img src="https://buddho.org/wp-content/uploads/sites/2/herfst-blad.jpg"></img>
+            <img className="backgroundImage" src="https://buddho.org/wp-content/uploads/sites/2/herfst-blad.jpg"></img>
           </div>
           <div className="App">
             <div className="container">
-              <div className="row d-flex justify-content-center">
+              <div className="row d-flex justify-content-start">
                 <div className="col-md-4">
                   <Fade in>
-                    <Card className="card-size">
+                    <Card className="card-size" style={{width:'550px',margin:'150px 0px 0px 370px'}}>
                       <div class="row">
                         <div class="ps-5 pb-3 pt-3 pe-5">
                           <br></br>
                           <h3 class="text-center">Sign In</h3>
                           <br></br>
+                          <img src="https://sv1.picz.in.th/images/2022/04/24/8Jfd4Q.png" style={{width:"70px",margin:"10px 0px 10px 200px"}}></img>
                           <h3 class="text-center font-weight-bold">
                             <strong>THAMMA</strong>
                           </h3>
-                          <br></br>
-                          <br></br>
                           <br></br>
                           <br></br>
                           <br></br>

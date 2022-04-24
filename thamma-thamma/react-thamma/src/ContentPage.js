@@ -21,9 +21,9 @@ function ContentPage() {
     const [userList, setUserList] = useState({});
 
     let currentuser = localStorage.getItem("id");
+    const adminID = '62526df6d30be6196cd5f864';
 
     const url = `https://localhost:7290/api/post/${postID}`;
-    const urlPost = `https://localhost:7290/api/post`;
     const urlUser = `https://localhost:7290/api/user`;
 
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -66,8 +66,25 @@ function ContentPage() {
     }
 
     function deleteComment(index) {
-        console.log("remove " + index);
         data[4].splice(index, 1);
+        fetchEdit();
+    }
+
+    function likeComment(index) {
+        var check = -1;
+        for(var i=2;i<data[4][index].length;i++){
+            if(data[4][index][i] === currentuser){
+                check = i;
+            }
+        }
+           
+        if(check === -1){
+            data[4][index].push(currentuser);
+        }else{
+            data[4][index].splice(check,1);
+        }
+        
+
         fetchEdit();
     }
 
@@ -146,7 +163,9 @@ function ContentPage() {
                 <div class="col-auto">
                     <Card className='contentPageCard'>
                         <div style={{ position: "relative" }}>
-                            <Card.Img className="contentPageImage" variant="top" src={data[3]} />
+                            <div class="overflow-hidden">
+                                <Card.Img className="contentPageImage" variant="top" src={data[3]} />
+                            </div>
                             {/* {data && data.length ? <Button className='like-amount' onClick={updateLike}>{data[5].length} Like</Button> : ""} */}
                             {data && data.length ? 
                                 <div className='like-amount'>
@@ -169,27 +188,33 @@ function ContentPage() {
                                 : ""}
                             <Card.Title style={{ fontSize: "40px", fontWeight: "700" }}>{data[1]}</Card.Title>
                             <Card.Text style={{ padding: "10px 20px 10px 10px", fontSize: "17px" }}>{data[2]}</Card.Text>
-                            {data && data.length && data[5].includes(currentuser) ?
-                                <button className="real-liked-button" onClick={updateLike}>
-                                    <div>
-                                        <AiFillLike style={{ color: "#1B98E8", fontSize: "25px", margin: "0px 5px 8px 0px" }} />
-                                        <span className="like-text" style={{ color: "#1B98E8" }}>Liked</span>
-                                    </div>
-                                </button>
-                                :
-                                <button className="real-like-button" onClick={updateLike}>
-                                    <div>
-                                        <AiOutlineLike style={{ color: "#1B98E8", fontSize: "25px", margin: "0px 5px 8px 0px" }} />
-                                        <span className="like-text" style={{ color: "#1B98E8" }}>Like</span>
-                                    </div>
-                                </button>
-                            }
-                            <button className="real-delete-button" onClick={(e) => notifyDeletePost(e)}>
+                            <div style={{display:"flex", flexDirection:"row", justifyContent: "space-between"}}>
+                                {data && data.length && data[5].includes(currentuser) ?
+                                    <button className="real-liked-button" onClick={updateLike}>
+                                        <div>
+                                            <AiFillLike style={{ color: "#1B98E8", fontSize: "25px", margin: "0px 5px 8px 0px" }} />
+                                            <span className="like-text" style={{ color: "#1B98E8" }}>Liked</span>
+                                        </div>
+                                    </button>
+                                    :
+                                    <button className="real-like-button" onClick={updateLike}>
+                                        <div>
+                                            <AiOutlineLike style={{ color: "#1B98E8", fontSize: "25px", margin: "0px 5px 8px 0px" }} />
+                                            <span className="like-text" style={{ color: "#1B98E8" }}>Like</span>
+                                        </div>
+                                    </button>
+                                }
                                 <div>
-                                    <FaHandMiddleFinger style={{color:"#FFFFFF",fontSize:"30px"}}/>
-                                    <span className="like-text">Delete</span>
+                                    {currentuser ===  adminID?
+                                        <button className="real-delete-button" onClick={(e) => notifyDeletePost(e)}>
+                                            <div>
+                                                <FaTrashAlt style={{ color: "#D6001A", fontSize:"22px"}} />
+                                            </div>
+                                        </button>    
+                                    : ""
+                                }
                                 </div>
-                            </button>
+                            </div>
                             <ToastContainer />
                         </Card.Body>
                     </Card>
@@ -204,18 +229,45 @@ function ContentPage() {
                             <div className="center-col" style={{ padding: "0px", height: "650px" }}>
                                 <ul style={{ padding: "0px" }}>
                                     {data && data.length && userList && userList.length ? data[4].map((item, i) => (
-                                        <Card className='commentCard'>
-                                            <Card.Body className="commentRow">
-                                                <img src={(userList.find(o => o.id === item[1])).img} className="avatar"></img>
-                                                <div className="commentColumn">
-                                                    <Card.Title style={{ display: "flex", justifyContent: "space-between", margin: "0px 0px 20px 0px" }}>
-                                                        <a href={"/profile/" + item[1]} className="link-noUnderline">{(userList.find(o => o.id === item[1])).username}</a>
-                                                        {currentuser === '62526df6d30be6196cd5f864' ? <button id={"deleteButton" + i} className="deleteCommentButton" onClick={(e) => notify(i, e)}><FaTrashAlt style={{ color: "#F1011E" }} /></button> : " "}
-                                                    </Card.Title>
-                                                    <Card.Text style={{ margin: "0px 20px 0px 20px" }}>{item[0]}</Card.Text>
-                                                </div>
-                                            </Card.Body>
-                                        </Card>
+                                        <div>
+                                            { (userList.find(o => o.id === item[1])).status === 'true'?
+                                                <Card className='commentCard'>
+                                                    <Card.Body className="commentRow">
+                                                        <img src={(userList.find(o => o.id === item[1])).img} className="avatar"></img>
+                                                        <div className="commentColumn">
+                                                            <Card.Title style={{ display: "flex", justifyContent: "space-between", margin: "0px 0px 20px 0px" }}>
+                                                                <a href={"/profile/" + item[1]} className="link-noUnderline">{(userList.find(o => o.id === item[1])).username}</a>
+                                                                {currentuser === adminID || currentuser === item[1] ? <button id={"deleteButton" + i} className="deleteCommentButton" onClick={(e) => notify(i, e)}><FaTrashAlt style={{ color: "#F1011E" }} /></button> : " "}
+                                                            </Card.Title>
+                                                            <Card.Text style={{ margin: "0px 20px 0px 20px" }}>{item[0]}</Card.Text>
+                                                            <button className="comment-liked-button">
+                                                                <div>
+                                                                    <AiFillLike style={{ color: "#1B98E8", fontSize: "20px", margin: "0px 5px 8px 0px" }} onClick={(e) => likeComment(i, e)}/>
+                                                                    <span className="like-text" style={{ color: "#1B98E8", fontSize:"17px"}}>{item.length-2}</span>
+                                                                </div>
+                                                            </button>
+                                                        </div>
+                                                    </Card.Body>
+                                                </Card> 
+                                            : 
+                                            <div>
+                                                {currentuser === adminID ?
+                                                    <Card className='commentCard' style={{opacity: "20%"}}>
+                                                        <Card.Body className="commentRow">
+                                                            <img src={(userList.find(o => o.id === item[1])).img} className="avatar"></img>
+                                                            <div className="commentColumn">
+                                                                <Card.Title style={{ display: "flex", justifyContent: "space-between", margin: "0px 0px 20px 0px" }}>
+                                                                    <a href={"/profile/" + item[1]} className="link-noUnderline">{(userList.find(o => o.id === item[1])).username}</a>
+                                                                    {currentuser === adminID || currentuser === item[1] ? <button id={"deleteButton" + i} className="deleteCommentButton" onClick={(e) => notify(i, e)}><FaTrashAlt style={{ color: "#F1011E" }} /></button> : " "}
+                                                                </Card.Title>
+                                                                <Card.Text style={{ margin: "0px 20px 0px 20px" }}>{item[0]}</Card.Text>
+                                                            </div>
+                                                        </Card.Body>
+                                                    </Card> 
+                                                : ""}
+                                            </div>
+                                            }
+                                        </div>
                                     )) : ""}
                                 </ul>
                             </div>

@@ -80,7 +80,7 @@ function OtherProfile() {
                   <div class="account-settings">
                     <div class="user-profile">
                       <div class="user-avatar">
-                        <img src={data[6]} alt="profile_img"></img>
+                        <img src={data[6]} alt="profile_img" style={{objectFit:"cover"}}></img>
                       </div>
                       <h5 class="user-name" alt="name">
                         {data[4] + " " + data[5]}

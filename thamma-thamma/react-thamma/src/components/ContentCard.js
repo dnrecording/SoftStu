@@ -86,7 +86,7 @@ function ContentCard(props) {
                 }}
               />
             )}
-            {loaded && <p>{date.toLocaleDateString("en-US", options)}</p>}
+            {loaded && <p>{date.toLocaleDateString("th-TH", options)}</p>}
             {!loaded && (
               <LoadingPlaceHolder
                 extraStyles={{
