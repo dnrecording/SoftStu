@@ -624,19 +624,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\oatxs\\.nuget\\packages\\": {}
+    "C:\\Users\\DrgN\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\oatxs\\Documents\\GitHub\\SoftStu2\\thamma-thamma\\dotnet-thamma\\dotnet-thamma.csproj",
+      "projectUniqueName": "X:\\git-repo\\SoftStu\\thamma-thamma\\dotnet-thamma\\dotnet-thamma.csproj",
       "projectName": "dotnet-thamma",
-      "projectPath": "C:\\Users\\oatxs\\Documents\\GitHub\\SoftStu2\\thamma-thamma\\dotnet-thamma\\dotnet-thamma.csproj",
-      "packagesPath": "C:\\Users\\oatxs\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\oatxs\\Documents\\GitHub\\SoftStu2\\thamma-thamma\\dotnet-thamma\\obj\\",
+      "projectPath": "X:\\git-repo\\SoftStu\\thamma-thamma\\dotnet-thamma\\dotnet-thamma.csproj",
+      "packagesPath": "C:\\Users\\DrgN\\.nuget\\packages\\",
+      "outputPath": "X:\\git-repo\\SoftStu\\thamma-thamma\\dotnet-thamma\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\oatxs\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\DrgN\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -683,7 +683,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files (x86)\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

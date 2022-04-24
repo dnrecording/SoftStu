@@ -72,7 +72,7 @@ function OtherProfile() {
   return (
     <Layout>
       <form>
-        <div class="container">
+        <div class="container" style={{padding:"100px 0px 0px 0px"}}>
           <div class="row gutters">
             <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
               <div class="card h-100 border-0 mt-4">

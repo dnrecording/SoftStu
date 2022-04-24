@@ -4,6 +4,7 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import "./Profile.css";
 import { Card } from "react-bootstrap";
+import Fade from "react-bootstrap/Fade";
 // import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Tillana&display=swap');
 
 function LoginPage() {
@@ -31,58 +32,70 @@ function LoginPage() {
     <form onSubmit={handleSubmit(onSubmit)}>
       {
         <div class="bg">
-          <img src="https://mdbootstrap.com/img/Photos/Others/images/76.jpg"></img>
+          <div className="overflow-heidden">
+            <img src="https://buddho.org/wp-content/uploads/sites/2/herfst-blad.jpg"></img>
+          </div>
           <div className="App">
             <div className="container">
               <div className="row d-flex justify-content-center">
                 <div className="col-md-4">
-                  <Card className="card-size">
-                    <div class="row">
-                      <div class="ps-5 pb-3 pt-3 pe-5">
-                        <br></br>
-                        <h3 class="text-center">Sign In</h3>
-                        <br></br>
-                        <h3 class="text-center">THAMMA</h3>
-                        <br></br>
-                        <br></br>
-                        <br></br>
-                        <div className="form-group">
-                          <label>Username</label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            placeholder="Enter Username"
-                            {...register("username")}
-                          />
-                        </div>
-                        <div className="form-group">
-                          <label>Password</label>
-                          <input
-                            type="password"
-                            className="form-control"
-                            placeholder="Enter password"
-                            {...register("password")}
-                          />
-                        </div>
-                        <div className="form-group d-grid gap-2 col-6 mx-auto">
-                          <button class="btn btn-primary mt-3" type="submit">
-                            Sign in
-                          </button>
+                  <Fade in>
+                    <Card className="card-size">
+                      <div class="row">
+                        <div class="ps-5 pb-3 pt-3 pe-5">
+                          <br></br>
+                          <h3 class="text-center">Sign In</h3>
+                          <br></br>
+                          <h3 class="text-center font-weight-bold">
+                            <strong>THAMMA</strong>
+                          </h3>
+                          <br></br>
+                          <br></br>
+                          <br></br>
+                          <br></br>
+                          <br></br>
+                          <div className="form-group">
+                            <label>Username</label>
+                            <input
+                              type="text"
+                              className="form-control"
+                              placeholder="Enter Username"
+                              {...register("username")}
+                            />
+                          </div>
+                          <div className="form-group">
+                            <label className="mt-3">Password</label>
+                            <input
+                              type="password"
+                              className="form-control"
+                              placeholder="Enter password"
+                              {...register("password")}
+                            />
+                          </div>
+                          <div className="form-group d-grid gap-2 col-6 mx-auto">
+                            <button class="btn btn-primary mt-4" type="submit">
+                              Sign in
+                            </button>
+                            {/* <button
+                              class="btn btn-primary"
+                              type="button"
+                              className="btn btn-link btn-block"
+                              onClick={() => {
+                                navigate("/register");
+                              }}
+                            >
+                              <p>first time?</p>Register
+                            </button> */}
 
-                          <button
-                            class="btn btn-primary"
-                            type="button"
-                            className="btn btn-primary btn-block"
-                            onClick={() => {
-                              navigate("/register");
-                            }}
-                          >
-                            Register
-                          </button>
+                            <p className="forgot-password text-right text-center">
+                              Not having an account? <a href="register">Register</a>
+                            </p>
+
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </Card>
+                    </Card>
+                  </Fade>
                 </div>
               </div>
             </div>

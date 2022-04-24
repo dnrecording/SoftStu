@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, Form, Input,Upload, Tooltip} from 'antd'
-import './App.css';
+import './WritePost.css';
 import {PlusCircleOutlined} from '@ant-design/icons'
 import TextArea from 'antd/lib/input/TextArea';
 
