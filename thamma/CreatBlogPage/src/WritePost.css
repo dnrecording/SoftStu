@@ -1,6 +1,29 @@
 @import '~antd/dist/antd.css';
 
-.writeSubmit {
-    margin: 20px;
-    left: 84.5%;
+.storyText {
+    width: 1960px;
+    position: absolute;
+    left: 100px; 
+    top: 170px;
+}
+
+.submitButton {
+    position: absolute; 
+    right: 130px; 
+    top: 530px;
+}
+
+.TitleText {
+    position: absolute; 
+    left: 100px; 
+    top: 100px;
+}
+
+@media (max-width: 760px) {
+    .storyText {
+        width: 700px;
+    }
+    .submitButton{
+        right: 30px;
+    }
 }

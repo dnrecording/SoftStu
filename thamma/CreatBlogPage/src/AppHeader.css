@@ -28,6 +28,7 @@
 }
 
 .tabbar a {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: black;
     display: flex;
     font-size: 12px;
@@ -63,4 +64,23 @@
 
 .tabbar a:hover {
     color: white;
+}
+
+@media(max-width: 760px) {
+    .topLeft {
+        flex: 2;
+        font-size: 20px;
+    }
+    .fa-solid {
+        display: none;
+    }
+    .topCenter {
+        flex: 4;
+    }
+    .tabbar{
+        margin-left: 50px;
+    }
+    .tabbar a {
+        font-size: 18px;
+    }
 }
