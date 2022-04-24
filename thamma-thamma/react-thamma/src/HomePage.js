@@ -1,51 +1,118 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Button, Card } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import "./Profile.css";
 import { Layout } from "./components/Layout";
+import ContentCard from "./components/ContentCard";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-function HomePage() {
-  const navigate = useNavigate();
-  let currentuser = localStorage.getItem("id");
-  const url = `https://localhost:7290/api/user/${currentuser}`;
+const client = axios.create({
+  baseURL: "https://localhost:7290/api/post/",
+});
 
-  const [currentUser, setCurrentUser] = useState("");
-  // in case need to use current user data
-  // [0]: id, [1]: username, [2]: password, [3]: email, [4]: fname, [5]: lname, [6]: img, [7]: status
+function HomePage(props) {
+  const [post, setPost] = useState({});
+  const [error, setError] = useState(null);
+  const [searchValue, setsearchValue] = useState("");
+  let checkFound = 0;
+
+  //Add Tag Here !!!!
+  const tag = ["WaT", "Tour" , "Bao","Kuy Floyd I na Hee" ,"Oat"];
 
   useEffect(() => {
-    (async () => {
-      if (currentuser !== null) {
-        const users = await axios.get(url);
-        setCurrentUser(Object.values(users.data));
-      } else {
-        navigate("/login");
-      }
-    })();
+    async function getPost() {
+      const response = await client.get("");
+      setPost(response.data);
+    }
+    getPost();
   }, []);
 
+  function setValue(y) {
+    setsearchValue(y);
+    console.log(checkFound)
+  }
+  
+  const notifySuccess = (text) => {
+    toast.success(String(text), {
+      position: toast.POSITION.TOP_RIGHT
+    });
+  };
+  const notifyError = (text) => {
+    toast.error(String(text), {
+      position: toast.POSITION.TOP_RIGHT
+    });
+  };
+  const notFound = (i) => {
+    if(i === post.length-1 && checkFound === 0){
+      setValue(null)
+      notifyError("No Blogs Found !!!")
+    }
+  }
+
+  if (error) return `Error: ${error.message}`;
+  if (!post) return "No post!";
   return (
-    <Layout>
-      <h1>Home Page</h1>
-      <p>{currentuser}</p>
-      <Button
-        class="btn btn-primary mx-2"
-        onClick={() => {
-          navigate("/content");
-        }}
-      >
-        Go to Content
-      </Button>
-      {/* testing */}
-<br></br>
-<div class="text-center">
-<Button class="btn btn-primary mx-2" onClick={() => {navigate("/profile/62526df6d30be6196cd5f864")}}>admin</Button>
-<Button class="btn btn-primary mx-2" onClick={() => {navigate("/profile/62527dd6d30be6196cd5f865")}}>user1</Button>
-<Button class="btn btn-primary mx-2" onClick={() => {navigate("/profile/62527e2cd30be6196cd5f866")}}>user2</Button>
-<Button class="btn btn-primary mx-2" onClick={() => {navigate("/profile/625a9e738f59ed05920b6444")}}>user3</Button>
-</div>
+    <Layout className="homelay">
+      <div className="con-right">
+        <div class=" d-none d-xl-block ">
+          <div className="searchForm">
+            <input
+              id="textsearch"
+              type="text"
+              className="form-control"
+              placeholder="Search Blog ..."
+            />
+            <Button
+              onClick={() =>
+                (setValue(document.getElementById("textsearch").value),notifySuccess("Search Successfully !"))
+              }
+            >
+              Search
+            </Button>
+          </div>
+        
+        <div className="navTag">
+          {tag.map((itemTag) => (
+            <button className="mb-3 "
+              onClick={() =>
+                (notifySuccess("Search Successfully !"),checkFound = 0,post.map((item,i) => (
+                  <div>
+                    {item.tag.search(itemTag) !== -1 ? (checkFound++,setValue(itemTag)) : 
+                    notFound(i)}
+                  </div>
+                )))
+              }
+              style={{padding:"10px 25px",border:"0px", borderRadius: "1rem" }}
+            >
+              {itemTag}
+            </button>
+          ))}
+        </div>
+        </div>
+      </div>
+      <div className="con-left">
+      <ToastContainer />
+        <h1>Home Page</h1>
+        {post && post.length ? (
+          post.map((item) => (
+            <div>
+              {item.title.search(searchValue) !== -1 ||
+              item.tag.search(searchValue) !== -1 ? 
+                <ContentCard key={item.id} {...item} />
+               : (
+                ""
+              )}
+            </div>
+          ))
+        ) : (
+          <h1>Page Not Found</h1>
+          
+        )}
+      </div>
+      
     </Layout>
   );
 }

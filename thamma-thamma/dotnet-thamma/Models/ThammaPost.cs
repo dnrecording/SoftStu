@@ -22,5 +22,17 @@ public class Post
     public string[][] comments { get; set; } = null!;
 
     [BsonElement("like")]
-    public int like { get; set; } = 0;
+    public string[] like { get; set; } = null!;
+
+    [BsonElement("username")]
+    public string username { get; set; } = null!;
+
+    [BsonElement("tag")]
+    public string tag { get; set; } = null!;
+
+    [BsonElement("date")]
+    public DateTime date { get; set; }
+
+    [BsonElement("author")]
+    public string author { get; set; } = null!;
 }

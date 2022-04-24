@@ -49,4 +49,27 @@ public class PostController : ControllerBase
 
         return NoContent();
     }
+
+    [HttpPost]
+    public async Task<IActionResult> Post(Post newPost)
+    {
+        await _postService.CreateAsync(newPost);
+
+        return CreatedAtAction(nameof(GetAll), new { id = newPost.Id }, newPost);
+    }
+
+    [HttpDelete("{id:length(24)}")]
+    public async Task<IActionResult> Delete(string id)
+    {
+        var post = await _postService.GetAsync(id);
+
+        if (post is null)
+        {
+            return NotFound();
+        }
+
+        await _postService.RemoveAsync(id);
+
+        return NoContent();
+    }
 }

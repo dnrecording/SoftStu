@@ -36,8 +36,8 @@ const UserTable = () => {
   }, [setuserList]);
 
   return (
-    <Layout>
-      <Container class="mt-4">
+     <Layout>
+      <Container style={{padding:"130px 0px 0px 0px"}}>
         <ReactBootstrap.Table striped bordered hover>
           <thead class="text-center">
             <tr>
@@ -52,7 +52,7 @@ const UserTable = () => {
             {userList.lists &&
               userList.lists.map((item) => (
                 <tr key={item.id}>
-                  <td>{<p onClick={() => {navigate(`/profile/${item.id}`)}}>{item.username}</p>}</td>
+                  <td style={{cursor:'pointer',textAlign:'center'}}>{<p onClick={() => {navigate(`/profile/${item.id}`)}}>{item.username}</p>}</td>
                   <td>{item.email}</td>
                   <td>{item.fname}</td>
                   <td>{item.lname}</td>

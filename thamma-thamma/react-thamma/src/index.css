@@ -11,3 +11,46 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@keyframes loaderSwipeAnim{
+  0%{
+      left: -100%;
+  }
+  100%{
+      left: 100%;
+  }
+}
+
+.homelay{
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+.searchForm{
+  display: flex;
+  margin:auto;
+  padding: 15px;
+  max-width: 300px;
+  align-content: center;
+ }
+ .con-right{
+  position: fixed;
+  max-width: 300px;
+  top: 400px;
+  left: 73%;
+  transform: translate(-50%,-50%);
+  
+  justify-items: center;
+ }
+ .con-left{
+  position: absolute;
+  top: 110px;
+  max-width: 880px;
+ }
+ .navTag{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+ }
