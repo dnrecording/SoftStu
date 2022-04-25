@@ -113,7 +113,7 @@ function OtherProfile() {
                               class="mx-5 mt-2 btn btn-primary"
                               onClick={onUnban}
                             >
-                              Unban
+                              UnBan
                             </button>
                           )}
                         </div>
@@ -128,12 +128,12 @@ function OtherProfile() {
                 <div class="card-body">
                   <div class="row gutters">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                      <h5 class="mb-2 text-primary">Personal Details</h5>
+                      <h5 class="mb-2 text-primary">ข้อมูลส่วนตัว</h5>
                       <br></br>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div class="form-group">
-                        <label for="fName">First Name</label>
+                        <label for="fName">ชื่อจริง</label>
                         <input
                           type="name"
                           class="form-control"
@@ -144,7 +144,7 @@ function OtherProfile() {
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div class="form-group">
-                        <label for="lName">Last Name</label>
+                        <label for="lName">นามสกุล</label>
                         <input
                           type="name"
                           class="form-control"
@@ -160,7 +160,7 @@ function OtherProfile() {
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div class="form-group">
-                        <label for="eMail">Email</label>
+                        <label for="eMail">อีเมล์</label>
                         <input
                           type="email"
                           class="form-control"
@@ -171,7 +171,7 @@ function OtherProfile() {
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div class="form-group">
-                        <label for="img">Image</label>
+                        <label for="img">URL รูปภาพ</label>
                         <input
                           type="url"
                           class="form-control"

@@ -20,7 +20,7 @@ function HomePage() {
 
   //Add Tag Here !!!!
   const [alltag, setAllTag] = useState({});
-  var tag = ["All"];
+  var tag = ["ทั้งหมด"];
   const [buttonColor, setButtonColor] = useState({});
   function Tag({ itemTag, color, index }) {
     return (
@@ -41,10 +41,12 @@ function HomePage() {
           )}
           style={{
             backgroundColor: color,
-            padding: "3px 20px",
+            padding: "5px 20px",
             border: "0px",
             borderRadius: "2rem",
             marginTop: "1rem",
+            fontWeight: "550",
+            color: "#000000"
           }}
           color={color}
           name={itemTag}
@@ -59,9 +61,9 @@ function HomePage() {
   function handleColorChange(i) {
     for (var j = 0; j < alltag.length; j++) {
       if (i === j) {
-        newState[j] = "#FFD712";
+        newState[j] = "#F7900E";
       } else {
-        newState[j] = "#39D1B4";
+        newState[j] = "#F9C91B";
       }
     }
     //console.log(newState);
@@ -70,7 +72,7 @@ function HomePage() {
 
   //// Button State !!!
   const [state, setState] = useState(false);
-  const [lastButton, setlastButton] = useState("All");
+  const [lastButton, setlastButton] = useState("ทั้งหมด");
 
   const handleButton = (itemTag, i) => {
     if (lastButton === itemTag && state === false) {
@@ -80,7 +82,7 @@ function HomePage() {
       setState(false);
     } else if (lastButton !== itemTag) {
       setState(false);
-    } else if (lastButton === "All") {
+    } else if (lastButton === "ทั้งหมด") {
       setState(false);
     }
     handleColorChange(i);
@@ -103,7 +105,7 @@ function HomePage() {
       setAllTag(tag);
 
       for (var k = 0; k < tag.length; k++) {
-        newState.push("#39D1B4");
+        newState.push("#F9C91B");
       }
       setButtonColor(newState);
     }
@@ -132,12 +134,12 @@ function HomePage() {
     });
   };
   const notFound = (itemTag, i) => {
-    if (i === post.length - 1 && checkFound === 0 && itemTag !== "All") {
+    if (i === post.length - 1 && checkFound === 0 && itemTag !== "ทั้งหมด") {
       setValue(null);
       notifyError("No Blogs Found !!!");
-    } else if (itemTag === "All") {
+    } else if (itemTag == "ทั้งหมด") {
       setValue("");
-      setlastButton("All");
+      setlastButton("ทั้งหมด");
       handleColorChange(0);
     } else {
     }
@@ -155,7 +157,7 @@ function HomePage() {
               id="textsearch"
               type="text"
               className="form-control"
-              placeholder="Search Blog ..."
+              placeholder="กรอกข้อความ"
               style={{ borderRadius: "2rem" }}
             />
             <Button
@@ -169,7 +171,7 @@ function HomePage() {
                 padding: "10px 20px",
               }}
             >
-              Search
+              ค้นหา
             </Button>
           </div>
 
