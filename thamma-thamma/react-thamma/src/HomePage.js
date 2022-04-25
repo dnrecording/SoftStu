@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { Modal, Button, Card } from "react-bootstrap";
-import { useNavigate } from "react-router";
+import {Button} from "react-bootstrap";
 import axios from "axios";
 import "./Profile.css";
 import { Layout } from "./components/Layout";
@@ -13,7 +11,7 @@ const client = axios.create({
   baseURL: "https://localhost:7290/api/post/",
 });
 
-function HomePage(props) {
+function HomePage() {
   const [post, setPost] = useState({});
   const [error, setError] = useState(null);
   const [searchValue, setsearchValue] = useState("");
@@ -23,10 +21,8 @@ function HomePage(props) {
   //Add Tag Here !!!!
   const [alltag, setAllTag] = useState({});
   var tag = ["All"];
-  const green = "#39D1B4";
-  const yellow = "#FFD712";
   const [buttonColor, setButtonColor] = useState({});
-  function Tag({ itemTag, onClick, color, index }) {
+  function Tag({ itemTag, color, index }) {
     return (
       <>
         <button
@@ -130,10 +126,10 @@ function HomePage(props) {
     });
   };
   const notFound = (itemTag, i) => {
-    if (i === post.length - 1 && checkFound === 0 && itemTag !== "All") {
+    if ((i === post.length - 1 && checkFound === 0 && itemTag !== "All")||i===999) {
       setValue(null);
       notifyError("No Blogs Found !!!");
-    } else if (itemTag == "All") {
+    } else if (itemTag === "All") {
       setValue("");
       setlastButton("All");
       handleColorChange(0);
