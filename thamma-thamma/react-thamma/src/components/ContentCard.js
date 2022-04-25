@@ -25,7 +25,7 @@ function ContentCard(props) {
     if (imageLoadNum < 2) return;
     setTimeout(() => {
       setLoaded(true);
-    }, 1500);
+    }, 666);
   };
   return (
     <div className="contentCard" onLoad={stuffLoaded}>
