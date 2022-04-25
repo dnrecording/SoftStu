@@ -122,7 +122,7 @@ function Profile() {
                             name="submit"
                             class="mx-5 mb-1 btn btn-secondary"
                           >
-                            Save
+                            บันทึก
                           </button>
                         </div>
                       </div>
@@ -136,12 +136,12 @@ function Profile() {
                 <div class="card-body">
                   <div class="row gutters">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                      <h5 class="mb-2 text-primary">Personal Details</h5>
+                      <h5 class="mb-2 text-primary">ข้อมูลส่วนตัว</h5>
                       <br></br>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div class="form-group">
-                        <label for="fName">First Name *</label>
+                        <label for="fName">ชื่อจริง *</label>
                         <input
                           type="name"
                           class="form-control"
@@ -164,7 +164,7 @@ function Profile() {
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div class="form-group">
-                        <label for="lName">Last Name *</label>
+                        <label for="lName">นามสกุล *</label>
                         <input
                           type="name"
                           class="form-control"
@@ -192,7 +192,7 @@ function Profile() {
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div class="form-group">
-                        <label for="eMail">Email *</label>
+                        <label for="eMail">อีเมล์ *</label>
                         <input
                           type="email"
                           class="form-control"
@@ -209,7 +209,7 @@ function Profile() {
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div class="form-group">
-                        <label for="img">Image *</label>
+                        <label for="img">URL รูปภาพ *</label>
                         <input
                           type="url"
                           class="form-control"
@@ -224,7 +224,7 @@ function Profile() {
                       <button class="delete-btn ">
                       {data[0] !== adminID && (
                         <a class="text-danger" onClick={handleShow}>
-                          Delete account
+                          ลบบัญชี
                         </a>
                       )}
                       </button>
