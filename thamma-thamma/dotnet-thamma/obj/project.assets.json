@@ -624,19 +624,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\UNS_CT\\.nuget\\packages\\": {}
+    "C:\\Users\\oatxs\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\UNS_CT\\Documents\\GitHub\\SoftStu\\thamma-thamma\\dotnet-thamma\\dotnet-thamma.csproj",
+      "projectUniqueName": "C:\\Users\\oatxs\\Documents\\GitHub\\SoftStu2\\thamma-thamma\\dotnet-thamma\\dotnet-thamma.csproj",
       "projectName": "dotnet-thamma",
-      "projectPath": "C:\\Users\\UNS_CT\\Documents\\GitHub\\SoftStu\\thamma-thamma\\dotnet-thamma\\dotnet-thamma.csproj",
-      "packagesPath": "C:\\Users\\UNS_CT\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\UNS_CT\\Documents\\GitHub\\SoftStu\\thamma-thamma\\dotnet-thamma\\obj\\",
+      "projectPath": "C:\\Users\\oatxs\\Documents\\GitHub\\SoftStu2\\thamma-thamma\\dotnet-thamma\\dotnet-thamma.csproj",
+      "packagesPath": "C:\\Users\\oatxs\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\oatxs\\Documents\\GitHub\\SoftStu2\\thamma-thamma\\dotnet-thamma\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\UNS_CT\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\oatxs\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"

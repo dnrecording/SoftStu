@@ -58,3 +58,24 @@ code {
  /* .navTag:hover{
 background-color: rgb(119, 119, 119);
  } */
+
+ .thamma{
+   position: fixed;
+   display: flex;
+   width: 200px;
+   height: 75px;
+   top: 7px;
+   left: 14%;
+   z-index: 99999;
+   background-color: transparent;
+   background-repeat: no-repeat;
+   border: none;
+   cursor: pointer;
+   outline: none;
+ }
+ .toggle-button{
+   background-color: rgb(123, 22, 232);
+ }
+ .toggle-close{
+  background-color: brown;
+}
