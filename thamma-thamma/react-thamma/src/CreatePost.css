@@ -108,6 +108,16 @@ body {
     color: #2e323c;
   }
 
-  .input-mysize { height: 250px 
+  .input-mysize { 
+    height: 300px 
+  }
 
+  .new-content-topic{
+    position: absolute;
+    top: 334px;
+    
+    background-color: #FFFFFF;
+    width: 1250px;
+    height: 50px;
+    z-index: 999;
 }

@@ -26,7 +26,7 @@ function ContentPage() {
     const url = `https://localhost:7290/api/post/${postID}`;
     const urlUser = `https://localhost:7290/api/user`;
 
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' , hour: '2-digit', minute: '2-digit'};
 
     async function fetchEdit(edit_data) {
         if (edit_data != null) {
@@ -89,7 +89,6 @@ function ContentPage() {
     }
 
     async function deletePost() {
-        console.log("delete " + postID);
         await axios.delete(url);
         navigate("/");
     }
@@ -166,7 +165,6 @@ function ContentPage() {
                             <div class="overflow-hidden">
                                 <Card.Img className="contentPageImage" variant="top" src={data[3]} />
                             </div>
-                            {/* {data && data.length ? <Button className='like-amount' onClick={updateLike}>{data[5].length} Like</Button> : ""} */}
                             {data && data.length ? 
                                 <div className='like-amount'>
                                 <AiFillLike style={{ color: "#1B98E8", fontSize: "25px", margin: "7px 5px 8px 0px" }} />
@@ -178,7 +176,7 @@ function ContentPage() {
                             {data && data.length && userList && userList.length ?
                                 <Card.Body className="commentRow">
                                     <img src={(userList.find(o => o.id === data[8])).img} className="avatar"></img>
-                                    <div className="commentColumn">
+                                    <div className="commentColumn" style={{width: "300px"}}>
                                         <Card.Title style={{ display: "flex", justifyContent: "space-between", margin: "0px 0px 5px 0px" }}>
                                             <a href={"/profile/" + (userList.find(o => o.id === data[8])).id} className="link-noUnderline">{(userList.find(o => o.id === data[8])).username}</a>
                                         </Card.Title>
@@ -188,6 +186,11 @@ function ContentPage() {
                                 : ""}
                             <Card.Title style={{ fontSize: "40px", fontWeight: "700" }}>{data[1]}</Card.Title>
                             <Card.Text style={{ padding: "10px 20px 10px 10px", fontSize: "17px" }}>{data[2]}</Card.Text>
+                            {/* <Card.Text>
+                                <span
+                                    dangerouslySetInnerHTML={{ __html: data[2]}}
+                                ></span>
+                            </Card.Text> */}
                             <div style={{display:"flex", flexDirection:"row", justifyContent: "space-between"}}>
                                 {data && data.length && data[5].includes(currentuser) ?
                                     <button className="real-liked-button" onClick={updateLike}>
