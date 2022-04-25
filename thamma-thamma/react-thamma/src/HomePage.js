@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {Button} from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import axios from "axios";
 import "./Profile.css";
 import { Layout } from "./components/Layout";
@@ -116,6 +116,12 @@ function HomePage() {
     setsearchValue(y);
     //console.log(checkFound)
   }
+  function noSerach() {
+    notifyError("No Blogs Found!!!");
+    noSerach = function () {}; // kill it as soon as it was called
+
+    console.log("call once and never again!"); // your stuff here
+  }
 
   const notifySuccess = (text) => {
     toast.success(String(text), {
@@ -135,6 +141,7 @@ function HomePage() {
       setValue("");
       setlastButton("ทั้งหมด");
       handleColorChange(0);
+    } else {
     }
   };
 
@@ -193,7 +200,7 @@ function HomePage() {
                 item.tag.search(searchValue) !== -1 ? (
                   <ContentCard key={item.id} {...item} />
                 ) : (
-                  ""
+                  noSerach()
                 )}
               </div>
             ))
