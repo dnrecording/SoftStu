@@ -59,7 +59,16 @@ function LoginPage() {
                               type="text"
                               className="form-control"
                               placeholder="Enter Username"
-                              {...register("username")}
+                              {...register("username", {
+                                required: true,
+                                maxLength: {
+                                  value: 20,
+                                  message: "this need to be max length of 20",
+                                },
+                                minLength: {
+                                  value: 4,
+                                  message: "this need to be min length of 4",
+                                },})}
                             />
                           </div>
                           <div className="form-group">
@@ -68,7 +77,16 @@ function LoginPage() {
                               type="password"
                               className="form-control"
                               placeholder="Enter password"
-                              {...register("password")}
+                              {...register("password", {
+                                required: true,
+                                maxLength: {
+                                  value: 20,
+                                  message: "this need to be max length of 20",
+                                },
+                                minLength: {
+                                  value: 8,
+                                  message: "this need to be min length of 4",
+                                },})}
                             />
                           </div>
                           <div className="form-group d-grid gap-2 col-6 mx-auto">

@@ -59,8 +59,11 @@ function Profile() {
         }
 
         for(var j=postList[i].comments.length-1;j>=0;j--){
+          
           if(postList[i].comments[j].includes(currentuser)){
-            postList[i].comments[j].splice(postList[i].comments[j].indexOf(currentuser),1);
+            if(postList[i].comments[j].indexOf(currentuser) != 1){
+              postList[i].comments[j].splice(postList[i].comments[j].indexOf(currentuser),1);
+            }
           }
 
           if(postList[i].comments[j][1] === currentuser){
@@ -250,7 +253,6 @@ function Profile() {
             </Button>
           </Modal.Footer>
         </Modal>
-        
       </form>
     </Layout>
   );

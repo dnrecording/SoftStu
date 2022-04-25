@@ -200,7 +200,7 @@ function HomePage() {
                 item.tag.search(searchValue) !== -1 ? (
                   <ContentCard key={item.id} {...item} />
                 ) : (
-                  noSerach()
+                  ""
                 )}
               </div>
             ))
