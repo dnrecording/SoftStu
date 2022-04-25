@@ -5,9 +5,6 @@ import { useNavigate } from "react-router";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { Card } from "react-bootstrap";
-import ReactQuill from "react-quill";
-import 'react-quill/dist/quill.snow.css';
-import "react-quill/dist/quill.bubble.css";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

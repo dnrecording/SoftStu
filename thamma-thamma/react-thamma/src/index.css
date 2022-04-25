@@ -36,8 +36,8 @@ code {
  .con-right{
   position: fixed;
   max-width: 300px;
-  top: 300px;
-  left: 80%;
+  top: 250px;
+  left: 77%;
   transform: translate(-50%,-50%);
 
   justify-items: center;
@@ -73,9 +73,3 @@ background-color: rgb(119, 119, 119);
    cursor: pointer;
    outline: none;
  }
- .toggle-button{
-   background-color: rgb(123, 22, 232);
- }
- .toggle-close{
-  background-color: brown;
-}

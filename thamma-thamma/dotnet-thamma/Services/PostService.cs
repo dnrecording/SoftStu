@@ -31,7 +31,7 @@ public class PostService
         await _postCollection.ReplaceOneAsync(x => x.Id == id, updatedPost);
 
     public async Task CreateAsync(Post newPost) =>
-        await _postCollection.InsertOneAsync(newPost);
+        await _postCollection.InsertOneAsync(newPost);  
 
     public async Task RemoveAsync(string id) =>
         await _postCollection.DeleteOneAsync(x => x.Id == id);

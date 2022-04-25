@@ -1,13 +1,7 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { Container } from "react-bootstrap";
-import { Layout } from "./Layout";
-import * as ReactBootstrap from "react-bootstrap";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Modal, Button, Card } from "react-bootstrap";
 import "./ContentCard.css";
 import LoadingPlaceHolder, { containerStyles } from "./LoadingPlaceHolder";
-import Tag from "./Tag";
 
 function ContentCard(props) {
   const navigate = useNavigate();
@@ -19,8 +13,8 @@ function ContentCard(props) {
     year: "numeric",
     month: "long",
     day: "numeric",
-    hour: '2-digit', 
-    minute: '2-digit'
+    hour: "2-digit",
+    minute: "2-digit",
   };
   const stuffLoaded = () => {
     imageLoadNum++;
@@ -37,7 +31,7 @@ function ContentCard(props) {
             <LoadingPlaceHolder
               extraStyles={{
                 height: "50px",
-                width: "620px",
+                width: "570px",
                 marginBottom: "12px",
                 borderRadius: "10px",
               }}
@@ -69,7 +63,7 @@ function ContentCard(props) {
           )}
           {loaded && (
             <p
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer" ,minWidth:"700"}}
               onClick={() => {
                 navigate("/content/" + props.id);
               }}
@@ -82,7 +76,7 @@ function ContentCard(props) {
               <LoadingPlaceHolder
                 extraStyles={{
                   height: "20px",
-                  width: "150px",
+                  width: "250px",
                   borderRadius: "10px",
                   marginTop: "8px",
                 }}
@@ -106,7 +100,7 @@ function ContentCard(props) {
                   cursor: "default",
                   borderRadius: "1rem",
                   marginLeft: "50px",
-                  padding:"3px 15px",
+                  padding: "3px 15px",
                   border: "0px",
                 }}
               >
@@ -133,6 +127,7 @@ function ContentCard(props) {
             onLoad={stuffLoaded}
             src={props.img}
             style={{ cursor: "pointer" }}
+            alt="conImg"
             onClick={() => {
               navigate("/content/" + props.id);
             }}
